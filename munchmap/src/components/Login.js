@@ -1,14 +1,43 @@
-import React from 'react';
-import './Login.css'; // Make sure to import the CSS file
+import React, { useState } from 'react';
+import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+const API_URL = 'http://localhost:8000/api/login/';
 
 function Login() {
-  //functions
   const navigate = useNavigate();
+
+  // Separate state hooks for username and password
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  // Update state when the input changes
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  // Updated handleLogin function
   function handleLogin() {
-    navigate('/admin');
-    console.log('Login clicked');
+    const credentials = {
+      username,
+      password
+    };
+
+    navigate('/restaurantform');
+    return axios.post(API_URL, credentials)
+      .then(response => {
+          if (response.data.token) {
+              localStorage.setItem('token', response.data.token);
+          }
+          return response.data;
+      });
   }
+
   return (
     <div className="login-container">
       <div className="login-form">
@@ -16,8 +45,8 @@ function Login() {
           <button className="title">Login</button>
         </div>
         <div className="input-group">
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
+          <input type="username" placeholder="Email" value={username} onChange={handleUsernameChange} />
+          <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
         </div>
         <div className="remember-forgot">
           <label>
@@ -25,7 +54,7 @@ function Login() {
           </label>
           <a href="#">Forgot Password?</a>
         </div>
-        <button className="login-button"onClick={handleLogin}>Log in</button>
+        <button className="login-button" onClick={handleLogin}>Log in</button>
         <div className="register-link">
           Don’t have an account? <Link to="/signup">Sign Up</Link>
         </div>
