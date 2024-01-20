@@ -61,16 +61,6 @@
     cursor: pointer;
   }
   
-  .google-login {
-    background-color: #db4437;
-    color: white;
-  }
-  
-  .signature-login {
-    background-color: #0f9d58;
-    color: white;
-  }
-  
   .register-link {
     margin-top: 20px;
     font-size: 0.9em;
