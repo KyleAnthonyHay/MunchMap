@@ -26,6 +26,7 @@
 .admin-list {
     flex: 1;
     padding: 20px;
+    margin-top: 40px;
 }
 
 .card {
@@ -64,4 +65,17 @@ p {
 
 .inspection-checkbox input {
     margin-right: 5px;
+}
+/* Your existing styles */
+
+.radio-group {
+    display: flex;
+}
+
+.radio-group input {
+    margin-right: 5px;
+}
+
+.radio-group label {
+    margin-right: 15px;
 }

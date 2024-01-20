@@ -39,14 +39,14 @@ function AdminView() {
             name: 'Shelter 1',
             location: 'Location 1',
             contactInfo: 'Contact 1',
-            donationType: 'Clothing',
+            donationType: 'Grains',
         },
         {
             ticketNumber: '45678',
             name: 'Shelter 2',
             location: 'Location 2',
             contactInfo: 'Contact 2',
-            donationType: 'Bedding',
+            donationType: 'Meats',
         },
         // Add more shelters as needed
     ];
@@ -69,13 +69,14 @@ function AdminView() {
                         <p>Donation Type: {restaurant.donationType}</p>
                         <p>Expiration Date: {restaurant.expirationDate}</p>
                         <div className="inspection-checkbox">
-                            <label>
-                                Inspected:
-                                <input type="radio" value="Yes" checked={restaurant.inspected === 'Yes'} readOnly />
-                                Yes
-                                <input type="radio" value="No" checked={restaurant.inspected === 'No'} readOnly />
-                                No
-                            </label>
+                            <label>Inspected:</label>
+                                <div className="radio-group">
+                                    <input type="radio" id={`yes-${index}`} value="Yes" checked={restaurant.inspected === 'Yes'} readOnly />
+                                    <label htmlFor={`yes-${index}`}>Yes</label>
+
+                                    <input type="radio" id={`no-${index}`} value="No" checked={restaurant.inspected === 'No'} readOnly />
+                                    <label htmlFor={`no-${index}`}>No</label>
+                                </div>
                         </div>
                     </div>
                 ))}
