@@ -6,7 +6,7 @@ function Login() {
   //functions
   const navigate = useNavigate();
   function handleLogin() {
-    navigate('/restaurantform');
+    navigate('/admin');
     console.log('Login clicked');
   }
   return (
