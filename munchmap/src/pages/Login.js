@@ -6,8 +6,7 @@ function Login() {
     <div className="login-container">
       <div className="login-form">
         <div className="toggle-buttons">
-          <button className="toggle-user">Restaurant</button>
-          <button className="toggle-admin">Admin</button>
+          <button className="toggle-user">Login</button>
         </div>
         <div className="input-group">
           <input type="email" placeholder="Email" />
