@@ -7,7 +7,6 @@ import  LandingPage  from './pages/LandingPage';
 function App() {
   return ( 
     <div>
-      <SignUp/>
       <LandingPage/>
     </div>
   ) 
