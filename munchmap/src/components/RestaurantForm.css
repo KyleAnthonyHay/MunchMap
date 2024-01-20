@@ -10,8 +10,20 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    position: relative;
 }
-
+.sign-out-button {
+    position: absolute; /* Position the button absolutely to the top left */
+    top: 20px; /* Adjust as needed */
+    left: 20px; /* Adjust as needed */
+    padding: 10px 20px;
+    background-color: blue; /* Use your desired color */
+    color: #fff; /* Use your desired text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 10%;
+}
 .title {
     color: #333;
     margin-bottom: 30px;

@@ -1,10 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './RestaurantForm.css'; // Make sure to import the CSS file
 
 function LandingPage() {
+    const navigate = useNavigate();
+    function handleSignOut() {
+        navigate('/');
+        console.log('Login clicked');
+    }
     return (
         <div className="landing-page">
-            <h1>Welcome to the Food Donation Platform</h1>
+            <button className="sign-out-button" onClick={handleSignOut}>Sign Out</button>
+            <h1>Enter Donation Information</h1>
             <div className="form-container">
                 <form>
                     <label htmlFor="foodType">Type:</label>

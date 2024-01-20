@@ -13,7 +13,7 @@ function Login() {
     <div className="login-container">
       <div className="login-form">
         <div className="toggle-buttons">
-          <button className="toggle-user">Login</button>
+          <button className="title">Login</button>
         </div>
         <div className="input-group">
           <input type="email" placeholder="Email" />
@@ -27,7 +27,7 @@ function Login() {
         </div>
         <button className="login-button"onClick={handleLogin}>Log in</button>
         <div className="register-link">
-          Don’t have an account? <Link to="/signup">Register</Link>
+          Don’t have an account? <Link to="/signup">Sign Up</Link>
         </div>
       </div>
     </div>
