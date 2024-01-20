@@ -13,13 +13,13 @@ function SignUp() {
     <div className="login-container">
       <div className="login-form">
         <div className="toggle-buttons">
-          <button className="title">Sign Up</button>
+          <button className="title">Restaurant Sign Up</button>
         </div>
         <div className="input-group">
-          <input type="email" placeholder="Email" />
-          <input type="email" placeholder="confrim email" />
-          <input type="password" placeholder="Password" />
-          <input type="password" placeholder="Confirm Password" />
+          <input type="text" placeholder="Username" />
+          <input type="text" placeholder="Name" />
+          <input type="text" placeholder="Address" />
+          <input type="text" placeholder="Restaraunt Type" />
         </div>
         <div className="remember-forgot">
           <label>
@@ -27,7 +27,7 @@ function SignUp() {
           </label>
           <a href="#">Forgot Password?</a>
         </div>
-        <button className="login-button" onClick={handleLogin} >Log in</button>
+        <button className="login-button" onClick={handleLogin} >Sign Up</button>
         <div className="register-link">
           Already have an account? <Link to="/">Log In</Link>
         </div>
