@@ -1,8 +1,14 @@
 import React from 'react';
 import './Login.css'; // Make sure to import the CSS file
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
+  //functions
+  const navigate = useNavigate();
+  function handleLogin() {
+    navigate('/restaurantform');
+    console.log('Login clicked');
+  }
   return (
     <div className="login-container">
       <div className="login-form">
@@ -19,7 +25,7 @@ function Login() {
           </label>
           <a href="#">Forgot Password?</a>
         </div>
-        <button className="login-button">Log in</button>
+        <button className="login-button"onClick={handleLogin}>Log in</button>
         <div className="register-link">
           Don’t have an account? <Link to="/signup">Register</Link>
         </div>
