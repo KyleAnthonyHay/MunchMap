@@ -28,7 +28,7 @@ function Login() {
       password
     };
 
-    navigate('/restaurantform');
+    navigate('/admin');
     return axios.post(API_URL, credentials)
       .then(response => {
           if (response.data.token) {

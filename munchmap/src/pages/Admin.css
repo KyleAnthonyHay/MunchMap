@@ -1,0 +1,67 @@
+/* admin.css or your preferred CSS file */
+
+.admin-view {
+    display: flex;
+}
+
+.container {
+    text-align: right;
+    padding: 10px;
+}
+
+.sign-out-button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.sign-out-button:hover {
+    background-color: #45a049;
+}
+
+.admin-list {
+    flex: 1;
+    padding: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: #4caf50;
+}
+
+p {
+    color: #666;
+    margin: 5px 0;
+}
+
+.inspection-checkbox {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.inspection-checkbox label {
+    color: #666;
+    margin-right: 10px;
+}
+
+.inspection-checkbox input {
+    margin-right: 5px;
+}
