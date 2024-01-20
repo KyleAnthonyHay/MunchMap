@@ -37,6 +37,22 @@ function Login() {
           return response.data;
       });
   }
+  // Updated handleUserLogin function
+  function handleUserLogin() {
+    const credentials = {
+      username,
+      password
+    };
+
+    navigate('/restaurantform');
+    return axios.post(API_URL, credentials)
+      .then(response => {
+          if (response.data.token) {
+              localStorage.setItem('token', response.data.token);
+          }
+          return response.data;
+      });
+  }
 
   return (
     <div className="login-container">
@@ -54,7 +70,8 @@ function Login() {
           </label>
           <a href="#">Forgot Password?</a>
         </div>
-        <button className="login-button" onClick={handleLogin}>Log in</button>
+        <button className="login-button" onClick={handleLogin}>Log in as Admin</button>
+        <button className="login-button" onClick={handleUserLogin}>Log in as User</button>
         <div className="register-link">
           Don’t have an account? <Link to="/signup">Sign Up</Link>
         </div>
