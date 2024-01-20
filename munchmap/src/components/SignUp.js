@@ -10,7 +10,9 @@ function SignUp() {
         </div>
         <div className="input-group">
           <input type="email" placeholder="Email" />
+          <input type="email" placeholder="confrim email" />
           <input type="password" placeholder="Password" />
+          <input type="password" placeholder="Confirm Password" />
         </div>
         <div className="remember-forgot">
           <label>
