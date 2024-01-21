@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './RestaurantForm.css'
+import { useNavigate } from 'react-router-dom';
 
 function LandingPage() {
     const [ticketData, setTicketData] = useState({
@@ -57,31 +58,44 @@ function LandingPage() {
         setTicketData({ ...ticketData, checked: event.target.checked });
     };
 
+    const navigate = useNavigate();
+
+    function handleSignOut() {
+        navigate('/');
+        console.log('Sign Out clicked');
+    }
 
     return (
         <div className="landing-page">
-            <h1>Enter Donation Information</h1>
-            <form onSubmit={createTicket} className="donation-form">
-                <div className="form-group">
-                    <label>Type:</label>
-                    <select name="food_category" onChange={handleInputChange} value={ticketData.food_category} className="form-control">
-                        <option value="0">Can Food</option>
-                        <option value="1">Vegetables</option>
-                        <option value="2">Non-Perishables</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label>Expiration Date:</label>
-                    <input
-                        type="date"
-                        name="expiration_date"
-                        onChange={handleInputChange}
-                        value={ticketData.expiration_date}
-                        className="form-control"
-                    />
-                </div>
-                <button type="submit" className="submit-button">Submit</button>
-            </form>
+            <div className="container">
+                <button className="sign-out-button" onClick={handleSignOut}>
+                    Sign Out
+                </button>
+            </div>
+            <div> 
+                <h1>Enter Donation Information</h1>
+                <form onSubmit={createTicket} className="donation-form">
+                    <div className="form-group">
+                        <label>Type:</label>
+                        <select name="food_category" onChange={handleInputChange} value={ticketData.food_category} className="form-control">
+                            <option value="0">Can Food</option>
+                            <option value="1">Vegetables</option>
+                            <option value="2">Non-Perishables</option>
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label>Expiration Date:</label>
+                        <input
+                            type="date"
+                            name="expiration_date"
+                            onChange={handleInputChange}
+                            value={ticketData.expiration_date}
+                            className="form-control"
+                        />
+                    </div>
+                    <button type="submit" className="submit-button">Submit</button>
+                </form>
+            </div>
         </div>
     );
 }
