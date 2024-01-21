@@ -1,68 +1,55 @@
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    background-color: #f4f4f4;
-}
-
 .landing-page {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    position: relative;
-}
-.sign-out-button {
-    position: absolute; /* Position the button absolutely to the top left */
-    top: 20px; /* Adjust as needed */
-    left: 20px; /* Adjust as needed */
-    padding: 10px 20px;
-    background-color: blue; /* Use your desired color */
-    color: #fff; /* Use your desired text color */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 10%;
-}
-.title {
-    color: #333;
-    margin-bottom: 30px;
-    font-size: 24px;
+    background-color: #f5f5f5;
 }
 
-.form-container {
-    background-color: #fff;
+.landing-page h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.donation-form {
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 300px;
-    box-sizing: border-box;
 }
 
-label {
+.form-group {
+    margin-bottom: 15px;
+    padding-right: 20px;
+}
+
+.form-group label {
     display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
     margin-bottom: 10px;
 }
 
-select, input {
+.submit-button {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-button {
-    background-color: blue;
-    color: #fff;
-    padding: 10px 15px;
+    padding: 10px;
     border: none;
+    background-color: #007bff;
+    color: white;
     border-radius: 4px;
     cursor: pointer;
-    width: 100%;
 }
 
-button:hover {
-    background-color: #45a049;
+.submit-button:hover {
+    background-color: #0056b3;
 }
