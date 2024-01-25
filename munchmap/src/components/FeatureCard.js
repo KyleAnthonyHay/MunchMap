@@ -36,10 +36,10 @@ const FeatureCard = () => {
                         <Card>
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    Upload Tickets
+                                    Admin Console
                                 </Typography>
                                 <Typography>
-                                    This is a brief description of the first feature your app offers.
+                                    Connect restaurant tickets to wearhouses that need food.
                                 </Typography>
                             </CardContent>
                         </Card>
