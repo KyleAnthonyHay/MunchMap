@@ -5,7 +5,7 @@ const FeatureCard = () => {
   return (
             <Container sx={{ py: 8 }} maxWidth="md">
                 <Grid container spacing={4}>
-                    {/* Repeat this for each feature you want to showcase */}
+                    {/* ******************** Card 1 ******************** */}
                     <Grid item xs={12} sm={6} md={4}>
                         <Card>
                             <CardContent>
@@ -18,7 +18,7 @@ const FeatureCard = () => {
                             </CardContent>
                         </Card>
                     </Grid>
-                    {/* ... other features */}
+                    {/* ******************** Card 2 ******************** */}
                     <Grid item xs={12} sm={6} md={4}>
                         <Card>
                             <CardContent>
@@ -31,7 +31,7 @@ const FeatureCard = () => {
                             </CardContent>
                         </Card>
                     </Grid>
-                    {/* ... other features */}
+                    {/* ******************** Card 3 ******************** */}
                     <Grid item xs={12} sm={6} md={4}>
                         <Card>
                             <CardContent>
