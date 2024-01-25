@@ -1,11 +1,37 @@
-
 .card-content {
     text-align: center;
-  }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .card-img {
-    max-width: 80%;
-    height: auto;
-    display: block;
-    margin: auto;
-    object-fit: contain;
-  }
+    width: 100%; 
+    max-width: 200px; 
+    height: auto; 
+    min-height: 200px;
+    object-fit: contain; /* Will ensure the image fits within the given dimensions */
+    /* align image to bottom */
+    
+}
+
+/*
+.card-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px; 
+}
+
+.card-img {
+    width: 100%; 
+    max-width: 200px; 
+    height: auto; 
+    max-height: 150px; 
+    object-fit: contain; 
+}
+
+*/
