@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import LandingPage from './components/RestaurantForm';
+import LandingPage from './pages/LandingPage';
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Admin from './pages/Admin'
@@ -13,7 +13,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/restaurantform" element={<RestaurantForm />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
