@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import LandingPage from './components/RestaurantForm';
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Admin from './pages/Admin'

@@ -19,7 +19,7 @@ function LandingPage() {
             headers: { Authorization: `Token ${token}` }
         })
             .then(response => {
-                setRestaurantId(response.data[0].id);
+                setRestaurantId(response.data[0]);
             })
             .catch(error => {
             });
