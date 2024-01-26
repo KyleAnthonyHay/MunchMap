@@ -3,9 +3,18 @@ import './SignUp.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Ensure axios is imported if you're using it
 
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
+
 const API_URL = 'http://localhost:8000/api/restaurants/'; // Replace with your API URL
 
 function SignUp() {
+  const [openDialog, setOpenDialog] = useState(false);
   const navigate = useNavigate();
 
   // State hooks
@@ -37,7 +46,7 @@ function SignUp() {
   };
 
   // Updated handleSignUp function
-  function handleSignUp() {
+  async function handleSignUp() {
     const credentials = {
       user: {
         username,
@@ -49,19 +58,37 @@ function SignUp() {
     };
 
     // Navigate and make API request
-    navigate('/restaurantform');
-    console.log(credentials);
-    return axios.post(API_URL, credentials)
-      .then(response => {
-          if (response.data.token) {
-              localStorage.setItem('token', response.data.token);
-          }
-          return response.data;
-      });
+    try {
+      const response = await axios.post(API_URL, credentials);
+      console.log(response);
+      navigate('/login');
+    } catch (error) {
+      console.log("An error occurred:", error.response);
+      setOpenDialog(true);
+    }
+  
   }
 
   return (
     <div className="login-container">
+      <Dialog
+        open={openDialog}
+        onClose={() => setOpenDialog(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Login Required"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            An error occurred. Please log in again.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions> 
+          <Button onClick={() => setOpenDialog(false)} color="primary" autoFocus>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
       <div className="login-form">
         <div className="toggle-buttons">
           <button className="title">Restaurant Sign Up</button>
