@@ -10,6 +10,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Box from '@mui/material/Box';
 
 const API_URL = 'http://localhost:8000/api/restaurants/'; // Replace with your API URL
 
@@ -69,6 +71,19 @@ function SignUp() {
   
   }
 
+  function handleAdminSignUp() {
+    navigate('/admin');
+  }
+  function handlerestaurantformSignUp() {
+    navigate('/restaurantform');
+  }
+  function handlevolunteerSignUp() {
+    navigate('/volunteer');
+  }
+  function handlespecialistSignUp() {
+    navigate('/specialist');
+  }
+
   return (
     <div className="login-container">
       <Dialog
@@ -90,9 +105,23 @@ function SignUp() {
         </DialogActions>
       </Dialog>
       <div className="login-form">
-        <div className="toggle-buttons">
-          <button className="title">Restaurant Sign Up</button>
-        </div>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            '& > *': {
+              m: 1,
+            },
+          }}
+        >
+          <ButtonGroup variant="text" aria-label="text button group">
+            <Button onClick={handlerestaurantformSignUp}>Restaurant</Button>
+            <Button onClick={handleAdminSignUp}>Admin</Button>
+            <Button onClick={handlevolunteerSignUp}>Volunteer</Button>
+            <Button onClick={handlespecialistSignUp}>Specialist</Button>
+          </ButtonGroup>
+        </Box>
         <div className="input-group">
           <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
           <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} /> {/* New password input */}
