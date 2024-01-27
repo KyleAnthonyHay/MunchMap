@@ -4,6 +4,8 @@ import LandingPage from './pages/LandingPage';
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Admin from './pages/Admin'
+import Volunteer from './pages/VolunteerPage'
+import Specialist from './pages/SpecialistPage'
 import  RestaurantForm  from './components/RestaurantForm';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -17,6 +19,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/restaurantform" element={<RestaurantForm />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/volunteer" element={<Volunteer />} />
+        <Route path="/specialist" element={<Specialist />} />
       </Routes>
     </Router>
   ); 

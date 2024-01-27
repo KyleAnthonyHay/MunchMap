@@ -94,6 +94,13 @@ function Login() {
         }
       })
   }
+  
+  function handleVolunteerLogin() {
+    navigate('/volunteer')
+  }
+  function handleSpecialistLogin() {
+    navigate('/specialist')
+  }
 
   return (
     <div className="login-container">
@@ -130,7 +137,9 @@ function Login() {
           <a href="#">Forgot Password?</a>
         </div>
         <button className="login-button" onClick={handleLogin}>Log in as Admin</button>
-        <button className="login-button" onClick={handleUserLogin}>Log in as User</button>
+        <button className="login-button" onClick={handleUserLogin}>Log in as Restaraunt</button>
+        <button className="login-button" onClick={handleSpecialistLogin}>Log in as Specialist</button>
+        <button className="login-button" onClick={handleVolunteerLogin}>Log in as Volunteer</button>
         <div className="register-link">
           Don’t have an account? <Link to="/signup">Sign Up</Link>
         </div>
