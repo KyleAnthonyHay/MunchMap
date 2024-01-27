@@ -16,17 +16,68 @@ import Box from '@mui/material/Box';
 const API_URL = 'http://localhost:8000/api/restaurants/'; // Replace with your API URL
 
 function SignUp() {
+  let AdminFlag = true;
+  let VolunteerFlag = false;
+  let SpecialistFlag = false;
+  let RestaurantFlag = false;
+
+  function AdminForm() {
+    return (
+      <button className="login-button" onClick={handleAdminSignUp}>Sign Up</button>
+    )
+  }
+  function VolunteerForm() {
+    return (
+      <button className="login-button" onClick={handlevolunteerSignUp}>Sign Up</button>
+    )
+  }
+  function SpecialistForm() {
+    return (
+      <button className="login-button" onClick={handlespecialistSignUp}>Sign Up</button>
+    )
+  }
+  function RestarauntForm() {
+    return (
+      <button className="login-button" onClick={handlerestaurantformSignUp}>Sign Up</button>
+    )
+  }
+
+  // ***************************** Render Condtitionally(can be removed) *****************************
+  function renderConditionally() {
+    if (AdminFlag) {
+      console.log("Conditional Render: AdminForm");
+      AdminFlag = false;
+      return AdminForm();
+    }
+    else if (VolunteerFlag) {
+      console.log("Conditional Render: VolunteerForm");
+      VolunteerFlag = false;
+      return VolunteerForm();
+    }
+    else if (SpecialistFlag) {
+      console.log("Conditional Render: SpecialistForm");
+      SpecialistFlag = false;
+      return SpecialistForm();
+    }
+    else if (RestaurantFlag) {
+      console.log("Conditional Render: RestarauntForm");
+      RestaurantFlag = false;
+      return RestarauntForm();
+    }
+  }
+  // ***************************** Render Condtitionally(can be removed) *****************************
+
   const [openDialog, setOpenDialog] = useState(false);
   const navigate = useNavigate();
 
-  // State hooks
+  // ***************************** State hooks *****************************
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState(''); // New state for password
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [concept, setRestaurantType] = useState('');
 
-  // Handlers for input changes
+  // ***************************** Handlers for input changes *****************************
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
@@ -47,8 +98,8 @@ function SignUp() {
     setRestaurantType(event.target.value);
   };
 
-  // Updated handleSignUp function
-  async function handleSignUp() {
+  // ***************************** Updated handleSignUp function *****************************
+  async function handleSignUp() { //for restarants
     const credentials = {
       user: {
         username,
@@ -135,7 +186,8 @@ function SignUp() {
           </label>
           <a href="#">Forgot Password?</a>
         </div>
-        <button className="login-button" onClick={handleSignUp}>Sign Up</button>
+        {/* call renderConditionally() every time any of the flags change */}
+        {renderConditionally()}
         <div className="register-link">
           Already have an account? <Link to="/login">Log In</Link>
         </div>

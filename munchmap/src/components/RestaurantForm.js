@@ -128,6 +128,15 @@ function LandingPage() {
                         </select>
                     </div>
                     <div className="form-group">
+                        <label>Quantity (lbs):</label>
+                        <input
+                            type="number"
+                            name="quantity"
+                            onChange={handleInputChange}
+                            value={ticketData.quantity}
+                            className="form-control"/>
+                    </div>
+                    <div className="form-group">
                         <label>Expiration Date:</label>
                         <input
                             type="date"
