@@ -3,9 +3,18 @@ import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
+
+
 const API_URL = 'http://localhost:8000/api/login/';
 
 function Login() {
+  const [openDialog, setOpenDialog] = useState(false);
   const navigate = useNavigate();
 
   // Separate state hooks for username and password
@@ -28,14 +37,30 @@ function Login() {
       password
     };
 
-    navigate('/admin');
     return axios.post(API_URL, credentials)
       .then(response => {
-          if (response.data.token) {
-              localStorage.setItem('token', response.data.token);
-          }
-          return response.data;
-      });
+        if (response.status == 200 && response.data.token) {
+          localStorage.setItem('token', response.data.token);
+          navigate('/admin');
+        }
+        return response.data;
+      })
+      .catch(error => {
+        // Clear the token and fields 
+        localStorage.removeItem('token');
+        setUsername('');
+        setPassword('');
+
+        if (error.response && error.response.status === 401 || error.response.status === 403) {
+          console.log('Unauthorized, logging out ...');
+          localStorage.removeItem('token');
+          setOpenDialog(true);
+        }
+        else {
+          console.log('An error occurred:', error.response);
+          setOpenDialog(true);
+        }
+      })
   }
   // Updated handleUserLogin function
   function handleUserLogin() {
@@ -44,18 +69,52 @@ function Login() {
       password
     };
 
-    navigate('/restaurantform');
     return axios.post(API_URL, credentials)
       .then(response => {
-          if (response.data.token) {
-              localStorage.setItem('token', response.data.token);
-          }
-          return response.data;
-      });
+        if (response.status === 200 && response.data.token) {
+          localStorage.setItem('token', response.data.token);
+          navigate('/restaurantform')
+        }
+        return response.data;
+      })
+      .catch(error => {
+        // Clear the token and fields 
+        localStorage.removeItem('token');
+        setUsername('');
+        setPassword('');
+
+        if (error.response && error.response.status === 401 || error.response.status === 403) {
+          console.log('Unauthorized, logging out ...');
+          localStorage.removeItem('token');
+          setOpenDialog(true);
+        }
+        else {
+          console.log('An error occurred:', error.response);
+          setOpenDialog(true);
+        }
+      })
   }
 
   return (
     <div className="login-container">
+      <Dialog
+        open={openDialog}
+        onClose={() => setOpenDialog(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Login Required"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            An error occurred. Please try logging in again
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenDialog(false)} color="primary" autoFocus>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
       <div className="login-form">
         <div className="toggle-buttons">
           <button className="title">Login</button>

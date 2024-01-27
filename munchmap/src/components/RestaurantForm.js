@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './RestaurantForm.css'
 import { useNavigate } from 'react-router-dom';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 
 function LandingPage() {
     const [ticketData, setTicketData] = useState({
@@ -11,6 +17,8 @@ function LandingPage() {
         restaurant: null
     });
 
+    const [openDialog, setOpenDialog] = useState(false);
+
     const [restaurantId, setRestaurantId] = useState(null);
 
     useEffect(() => {
@@ -19,9 +27,18 @@ function LandingPage() {
             headers: { Authorization: `Token ${token}` }
         })
             .then(response => {
-                setRestaurantId(response.data[0]);
+                setRestaurantId(response.data[0].id)
             })
             .catch(error => {
+                if (error.response && error.response.status === 401 || error.response.status === 403) {
+                    console.log('Unauthorized, logging out ...');
+                    localStorage.removeItem('token');
+                    setOpenDialog(true);
+                }
+                else {
+                    console.log('An error occurred:', error.response);
+                    navigate('/login');
+                }
             });
     }, []);
 
@@ -43,9 +60,15 @@ function LandingPage() {
                 // Handle ticket creation success
             })
             .catch(error => {
-                console.log(error.response)
-                console.error('Error creating ticket', error);
-                // Handle ticket creation error
+                if (error.response && error.response.status === 401 || error.response.status === 403) {
+                    console.log('Unauthorized, logging out ...');
+                    localStorage.removeItem('token');
+                    setOpenDialog(true);
+                }
+                else {
+                    console.log('An error occurred:', error.response);
+                    navigate('/login');
+                }
             });
     }
 
@@ -67,12 +90,33 @@ function LandingPage() {
 
     return (
         <div className="landing-page">
+            <Dialog
+                open={openDialog}
+                onClose={() => setOpenDialog(false)}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">{"Login Required"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        An error occurred. Please log in again.
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => navigate('/login')} color="primary">
+                        Login
+                    </Button>
+                    <Button onClick={() => setOpenDialog(false)} color="primary" autoFocus>
+                        Close
+                    </Button>
+                </DialogActions>
+            </Dialog>
             <div className="container">
                 <button className="sign-out-button" onClick={handleSignOut}>
                     Sign Out
                 </button>
             </div>
-            <div> 
+            <div>
                 <h1>Enter Donation Information</h1>
                 <form onSubmit={createTicket} className="donation-form">
                     <div className="form-group">
@@ -101,5 +145,3 @@ function LandingPage() {
 }
 
 export default LandingPage;
-
-//
