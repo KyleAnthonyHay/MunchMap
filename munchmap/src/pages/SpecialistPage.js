@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-
+import SpecialistTicket from '../components/SpecialistTicket';
+import './SpecialistPage.css'
 const SpecialistPage = () => {
   const [tickets, setTickets] = useState([]);
 
@@ -40,16 +41,19 @@ const SpecialistPage = () => {
 
   return (
     <div>
-      {tickets.map((ticket) => (
-        <li key={ticket.id}>
-          <h1>{ticket.name}</h1>
-          <h2>{ticket.restaurant.location}</h2> 
-          <h3>{ticket.food_category}</h3>
-          <h4>{ticket.quantity}</h4>
-          <button onClick={() => handleCheck(ticket.id)}>Check</button>
-        </li>
+      {tickets.map((ticketss) => (
+        // <li key={ticket.id}>
+        //   <h1>{ticket.name}</h1>
+        //   <h2>{ticket.restaurant.location}</h2> 
+        //   <h3>{ticket.food_category}</h3>
+        //   <h4>{ticket.quantity}</h4>
+        //   <button onClick={() => handleCheck(ticket.id)}>Check</button>
+        // </li>
+        <SpecialistTicket
+      ticket = {ticketss}/>
       )
       )}
+      
     </div>
   )
 }
