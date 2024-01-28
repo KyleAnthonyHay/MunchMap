@@ -76,6 +76,8 @@ function SignUp() {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [concept, setRestaurantType] = useState('');
+  const [phone_number, setPhone] = useState('');
+  const [email, setEmail] = useState('');
 
   // ***************************** Handlers for input changes *****************************
   const handleUsernameChange = (event) => {
@@ -98,6 +100,14 @@ function SignUp() {
     setRestaurantType(event.target.value);
   };
 
+  const handlePhoneChange = (event) => {
+    setPhone(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
   // ***************************** Updated handleSignUp function *****************************
   async function handleSignUp() { //for restarants
     const credentials = {
@@ -107,11 +117,14 @@ function SignUp() {
       },
       name,
       address,
-      concept
+      concept,
+      phone_number,
+      email
     };
 
     // Navigate and make API request
     try {
+      console.log(phone_number);
       const response = await axios.post(API_URL, credentials);
       console.log(response);
       navigate('/login');
@@ -177,6 +190,8 @@ function SignUp() {
           <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
           <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} /> {/* New password input */}
           <input type="text" placeholder="Name" value={name} onChange={handleNameChange} />
+          <input type="text" placeholder="Phone" value={phone_number} onChange={handlePhoneChange} />
+          <input type="text" placeholder="Email" value={email} onChange={handleEmailChange} />
           <input type="text" placeholder="Address" value={address} onChange={handleAddressChange} />
           <input type="text" placeholder="Restaurant Type" value={concept} onChange={handleRestaurantTypeChange} />
         </div>
@@ -187,7 +202,8 @@ function SignUp() {
           <a href="#">Forgot Password?</a>
         </div>
         {/* call renderConditionally() every time any of the flags change */}
-        {renderConditionally()}
+        {/* {renderConditionally()} */}
+        <button className="login-button" onClick={handleSignUp}>Sign Up</button>
         <div className="register-link">
           Already have an account? <Link to="/login">Log In</Link>
         </div>
