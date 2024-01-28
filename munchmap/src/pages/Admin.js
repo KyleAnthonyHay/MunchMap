@@ -33,29 +33,25 @@ const AdminView = () => {
 
     return (
         <div>
-            <h1>Admin Dashboard</h1>
-            <h2>Tickets</h2>
-            <ul>
-                {tickets.map(ticket => (
-                    <li key={ticket.id}> Ticket: {ticket.restaurant.name}, {ticket.restaurant.email} </li> 
-                    
-                ))}
-                {console.log(tickets)}
-            </ul>
-            <RestarauntTicket/> 
-        </div>
+  <h1>Admin Dashboard</h1>
+  <h2>Tickets</h2>
+
+    {tickets.map(ticket => (
+        <RestarauntTicket 
+          ticketNumber={ticket.id}
+          name={ticket.restaurant.name}
+          location={ticket.restaurant.address}
+          contactInfo={ticket.restaurant.phone_number}
+          donationType={ticket.food_category}
+          expirationDate={ticket.expiration_date}
+          inspected={ticket.checked}
+        />
+    ))}
+    {console.log(tickets)}
+
+</div>
+
     );
 };
 
 export default AdminView;
-
-{/* <div>
-<h1>Admin Dashboard</h1>
-<h2>Tickets</h2>
-<ul>
-    {tickets.map(ticket => (
-        <li key={ticket.id}> Ticket {ticket.restaurant.address}</li>  
-    ))}
-    {console.log(tickets)}
-</ul>
-</div> */}
