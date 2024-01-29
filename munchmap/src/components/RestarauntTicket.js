@@ -42,5 +42,5 @@ const RestarauntTicket = ({ ticketNumber, name, location, contactInfo, donationT
     </Card>
   );
 }
-//comment
+
 export default RestarauntTicket;
