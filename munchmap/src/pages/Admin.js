@@ -45,9 +45,9 @@ const AdminView = () => {
                 setExpiredTickets(null);
             } catch (err) {
                 console.log(err)
-                setError(err);
+
             } finally {
-                setIsLoading(false);
+
             }
         };
 

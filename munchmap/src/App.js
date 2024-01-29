@@ -7,6 +7,7 @@ import Admin from './pages/Admin'
 import Volunteer from './pages/VolunteerPage'
 import Specialist from './pages/SpecialistPage'
 import  RestaurantForm  from './components/RestaurantForm';
+import ShelterPage from './pages/ShelterPage';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/volunteer" element={<Volunteer />} />
         <Route path="/specialist" element={<Specialist />} />
+        <Route path="/shelter" element={<ShelterPage />} />
       </Routes>
     </Router>
   ); 

@@ -96,10 +96,26 @@ function Login() {
   }
   
   function handleVolunteerLogin() {
-    navigate('/volunteer')
+    // check if Email and Password field is filled
+    if (username === '' || password === '') {
+      setOpenDialog(true);
+    } else {
+      navigate('/volunteer')
+    }
   }
   function handleSpecialistLogin() {
+    if (username === '' || password === '') {
+      setOpenDialog(true);
+    } else {
     navigate('/specialist')
+    }
+  }
+  function handleShelterLogin() {
+    if (username === '' || password === '') {
+      setOpenDialog(true);
+    }else {
+    navigate('/shelter')
+    }
   }
 
   return (
@@ -140,6 +156,7 @@ function Login() {
         <button className="login-button" onClick={handleUserLogin}>Log in as Restaraunt</button>
         <button className="login-button" onClick={handleSpecialistLogin}>Log in as Specialist</button>
         <button className="login-button" onClick={handleVolunteerLogin}>Log in as Volunteer</button>
+        <button className="login-button" onClick={handleShelterLogin}>Log in as Shelter</button>
         <div className="register-link">
           Don’t have an account? <Link to="/signup">Sign Up</Link>
         </div>

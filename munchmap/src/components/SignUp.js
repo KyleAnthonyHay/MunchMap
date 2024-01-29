@@ -17,6 +17,7 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import RestaurantForm from './SignUpComponents/RestaurantForm';
+import ShelterForm from './SignUpComponents/ShelterForm';
 
 const API_URL = 'http://localhost:8000/api/restaurants/'; // Replace with your API URL
 
@@ -25,6 +26,7 @@ function SignUp() {
   const [VolunteerFlag, setVolunteerFlag] = useState(false);
   const [SpecialistFlag, setSpecialistFlag] = useState(false);
   const [RestaurantFlag, setRestaurantFlag] = useState(true);
+  const [ShelterFlag, setShelterFlag] = useState(false);
   
   
   function turnonAdminFlag() {
@@ -32,6 +34,7 @@ function SignUp() {
     setVolunteerFlag(false);
     setSpecialistFlag(false);
     setRestaurantFlag(false);
+    setShelterFlag(false);
   }
 
   function turnonVolunteerFlag() {
@@ -39,6 +42,7 @@ function SignUp() {
     setVolunteerFlag(true);
     setSpecialistFlag(false);
     setRestaurantFlag(false);
+    setShelterFlag(false);
   }
 
   function turnonSpecialistFlag() {
@@ -46,6 +50,7 @@ function SignUp() {
     setVolunteerFlag(false);
     setSpecialistFlag(true);
     setRestaurantFlag(false);
+    setShelterFlag(false);
   }
 
 
@@ -54,8 +59,16 @@ function SignUp() {
     setVolunteerFlag(false);
     setSpecialistFlag(false);
     setRestaurantFlag(true);
+    setShelterFlag(false);
   }
 
+  function turnonShelterFlag() {
+    setAdminFlag(false);
+    setVolunteerFlag(false);
+    setSpecialistFlag(false);
+    setRestaurantFlag(false);
+    setShelterFlag(true);
+  }
 
   // ***************************** Render Condtitionally(can be removed) *****************************
 
@@ -178,6 +191,7 @@ function SignUp() {
             <Button onClick={turnonAdminFlag}>Admin</Button>
             <Button onClick={turnonVolunteerFlag}>Volunteer</Button>
             <Button onClick={turnonSpecialistFlag}>Specialist</Button>
+            <Button onClick={turnonShelterFlag}>Shelter</Button>
           </ButtonGroup>
         </Box>
 
@@ -185,6 +199,9 @@ function SignUp() {
         { VolunteerFlag && <VolunteerForm/>}
         { SpecialistFlag && <SpecialistForm/>}
         { RestaurantFlag && <RestaurantForm/>}
+        { ShelterFlag && <ShelterForm/>}
+
+        
 
         
 
