@@ -4,6 +4,7 @@ import RestarauntTicket from '../components/RestarauntTicket';
 import './Admin.css';
 import ShelterTicket from '../components/ShelterTicket';
 import Typography from '@mui/material/Typography';
+import SignOutButton from '../components/SignOutButton';
 
 const AdminView = () => {
     const [tickets, setTickets] = useState([]);
@@ -125,6 +126,8 @@ const AdminView = () => {
         // Add more shelters as needed
     ];
     return (
+        <div>
+            <SignOutButton />
         <div className="admin-view">
             {/* <h1>Admin Dashboard</h1>
             <h2>Tickets</h2> */}
@@ -165,6 +168,7 @@ const AdminView = () => {
                 />
                 ))}
             </div>
+        </div>
         </div>
 
     );
