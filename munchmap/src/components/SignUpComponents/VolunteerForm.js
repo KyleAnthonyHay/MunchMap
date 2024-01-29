@@ -55,9 +55,28 @@ const RestaurantForm = () => {
   };
 
   async function handleSignUp() { //for restarants
-    
-  
-  }
+    const credentials = {
+      user: {
+        username,
+        password // Include password in the user object
+      },
+      first_name,
+      last_name,
+      phone_number,
+      email
+    };
+
+    // Navigate and make API request
+    try {
+      const response = await axios.post('http://localhost:8000/api/volunteers/', credentials);
+      console.log(response);
+      navigate('/login');
+    } catch (error) {
+      console.log("An error occurred:", error.response);
+      setOpenDialog(true);
+    }
+  };
+
   return (
     <div>
       <Dialog

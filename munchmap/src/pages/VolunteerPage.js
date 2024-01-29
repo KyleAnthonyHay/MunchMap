@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react'
 
 const VolunteerPage = () => {
   const [shelterRequests, setShelterRequests] = useState([]);
+  const [chosenShelterRequest, setChosenShelterRequest] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -24,6 +25,20 @@ const VolunteerPage = () => {
     fetchShelterRequests();
   }
   , []);
+
+
+  const handleDeliver = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await axios.post(`http://localhost:8000/api/shelter-requests/${chosenShelterRequest.id}/deliver_request/`, {}, {
+        headers: { Authorization: `Token ${token}` }
+      });
+      console.log(response);
+      setChosenShelterRequest(null);
+    } catch (err) {
+      console.log(err)
+    }
+  };
 
 
 

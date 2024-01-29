@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 
 const AdminView = () => {
     const [tickets, setTickets] = useState([]);
+    const [expiredTickets, setExpiredTickets] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -30,6 +31,50 @@ const AdminView = () => {
 
         fetchTickets();
     }, []);
+
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        const fetchExpiredTickets = async () => {
+            try {
+                // Replace with the actual API URL and authentication method
+                const response = await axios.get('http://localhost:8000/api/tickets/list_expired_tickets/',
+                    {
+                        headers: { Authorization: `Token ${token}` }
+                    });
+                setExpiredTickets(null);
+            } catch (err) {
+                console.log(err)
+                setError(err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchExpiredTickets();
+    }, []);
+
+
+    const deleteExpiredTickets = async () => {
+        const token = localStorage.getItem('token');
+        try {
+            // Replace with the actual API URL and authentication method
+            const response = await axios.delete('http://localhost:8000/api/tickets/delete_expired_tickets/',
+                {
+                    headers: { Authorization: `Token ${token}` }
+                });
+            setExpiredTickets(response.data);
+        } catch (err) {
+            console.log(err)
+            setError(err);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+
+
+
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
