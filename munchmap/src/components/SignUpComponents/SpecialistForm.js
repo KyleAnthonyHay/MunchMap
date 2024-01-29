@@ -18,8 +18,7 @@ const RestaurantForm = () => {
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState(''); // New state for password
   const [lastName, setLastName] = useState('');
-  const [address, setAddress] = useState('');
-  const [concept, setRestaurantType] = useState('');
+  const [password, setPassword] = useState('');
   const [phone_number, setPhone] = useState('');
   const [email, setEmail] = useState('');
 
@@ -42,13 +41,10 @@ const RestaurantForm = () => {
     setLastName(event.target.value);
   };
 
-  const handleAddressChange = (event) => {
-    setAddress(event.target.value);
+  const handlePasswordChange = (event) => { // New handler for password
+    setPassword(event.target.value);
   };
 
-  const handleRestaurantTypeChange = (event) => {
-    setRestaurantType(event.target.value);
-  };
 
   const handlePhoneChange = (event) => {
     setPhone(event.target.value);
@@ -86,6 +82,7 @@ const RestaurantForm = () => {
     <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
     <input type="text" placeholder="First Name" value={firstName} onChange={handleFirstNameChange} /> {/* first name */}
     <input type="text" placeholder="Last Name" value={lastName} onChange={handleLastNameChange} /> {/* last name */}
+    <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
     <input type="text" placeholder="Phone" value={phone_number} onChange={handlePhoneChange} /> 
     <input type="text" placeholder="Email" value={email} onChange={handleEmailChange} />
    
