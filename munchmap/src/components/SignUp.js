@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import './SignUp.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Ensure axios is imported if you're using it
+import AdminForm from './SignUpComponents/AdminForm';
+import VolunteerForm from './SignUpComponents/VolunteerForm';
+import SpecialistForm from './SignUpComponents/SpecialistForm';
 
 
 import Dialog from '@mui/material/Dialog';
@@ -16,11 +19,43 @@ import Box from '@mui/material/Box';
 const API_URL = 'http://localhost:8000/api/restaurants/'; // Replace with your API URL
 
 function SignUp() {
-  let AdminFlag = true;
-  let VolunteerFlag = false;
-  let SpecialistFlag = false;
-  let RestaurantFlag = false;
+  const [AdminFlag, setAdminFlag] = useState(false);
+  const [VolunteerFlag, setVolunteerFlag] = useState(false);
+  const [SpecialistFlag, setSpecialistFlag] = useState(false);
+  const [RestaurantFlag, setRestaurantFlag] = useState(false);
+  
+  
+  function turnonAdminFlag() {
+    setAdminFlag(true);
+    setVolunteerFlag(false);
+    setSpecialistFlag(false);
+    setRestaurantFlag(false);
+  }
 
+  function turnonVolunteerFlag() {
+    setAdminFlag(false);
+    setVolunteerFlag(true);
+    setSpecialistFlag(false);
+    setRestaurantFlag(false);
+  }
+
+  function turnonSpecialistFlag() {
+    setAdminFlag(false);
+    setVolunteerFlag(false);
+    setSpecialistFlag(true);
+    setRestaurantFlag(false);
+  }
+
+
+  function turnonRestaurantFlag() {
+    setAdminFlag(false);
+    setVolunteerFlag(false);
+    setSpecialistFlag(false);
+    setRestaurantFlag(true);
+  }
+
+
+/*
   function AdminForm() {
     return (
       <button className="login-button" onClick={handleAdminSignUp}>Sign Up</button>
@@ -65,6 +100,9 @@ function SignUp() {
       return RestarauntForm();
     }
   }
+
+  */
+
   // ***************************** Render Condtitionally(can be removed) *****************************
 
   const [openDialog, setOpenDialog] = useState(false);
@@ -78,6 +116,8 @@ function SignUp() {
   const [concept, setRestaurantType] = useState('');
   const [phone_number, setPhone] = useState('');
   const [email, setEmail] = useState('');
+
+
 
   // ***************************** Handlers for input changes *****************************
   const handleUsernameChange = (event) => {
@@ -180,12 +220,20 @@ function SignUp() {
           }}
         >
           <ButtonGroup variant="text" aria-label="text button group">
-            <Button onClick={handlerestaurantformSignUp}>Restaurant</Button>
-            <Button onClick={handleAdminSignUp}>Admin</Button>
-            <Button onClick={handlevolunteerSignUp}>Volunteer</Button>
-            <Button onClick={handlespecialistSignUp}>Specialist</Button>
+            <Button onClick={turnonRestaurantFlag}>Restaurant</Button>
+            <Button onClick={turnonAdminFlag}>Admin</Button>
+            <Button onClick={turnonVolunteerFlag}>Volunteer</Button>
+            <Button onClick={turnonSpecialistFlag}>Specialist</Button>
           </ButtonGroup>
         </Box>
+
+        { AdminFlag && <AdminForm/> }
+        { VolunteerFlag && <VolunteerForm/>}
+        { SpecialistFlag && <SpecialistForm/>}
+        
+
+
+
         <div className="input-group">
           <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
           <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} /> {/* New password input */}
