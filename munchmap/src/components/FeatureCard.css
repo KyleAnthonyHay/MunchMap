@@ -8,7 +8,7 @@
 
 .card-img {
     width: 100%; 
-    max-width: 200px; 
+    max-width: 300px; 
     height: auto; 
     min-height: 200px;
     object-fit: contain; /* Will ensure the image fits within the given dimensions */

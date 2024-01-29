@@ -2,25 +2,25 @@ import { Card, CardContent, Container, Grid, Typography } from '@mui/material'
 import React from 'react'
 import './FeatureCard.css'
 
-import TicketImage from '../assets/Tickets.svg'
-import ServerImage from '../assets/Server.svg'
-import UploadImage from '../assets/Upload.svg'
+import TicketImage from '../assets/donate2.png'
+import ServerImage from '../assets/ticketing.svg'
+import UploadImage from '../assets/community2.svg'
 // Define your styles object at the top of the file
 
 const FeatureCard = () => {
   return (
-            <Container sx={{ py: 8 }} maxWidth="lg">
+            <Container sx={{ py: 2 }} maxWidth="lg">
                 <Grid container spacing={4}>
                     {/* ******************** Card 1 ******************** */}
                     <Grid item xs={12} sm={6} md={4}>
                         <Card>
                             <CardContent className="card-content">
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    Upload Tickets
+                                A Sustainable Food Redistribution Platform
                                 </Typography>
-                                <img src={TicketImage} className="card-img" alt="Upload Tickets"/>
+                                <img src={TicketImage} className="card-img" alt="Upload Tickets" style={{ width: '75%' }}/>
                                 <Typography>
-                                    This is a brief description of the first feature your app offers.
+                                A revolutionary app that streamlines the process of food donation and redistribution, addressing both environmental and social concerns
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -30,11 +30,11 @@ const FeatureCard = () => {
                         <Card>
                             <CardContent className="card-content">
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    Upload Tickets
+                                Our ticketing system ensures transparent and organized process management
                                 </Typography>
-                                <img src={ServerImage} className="card-img" alt="Upload Tickets"/>
+                                <img src={ServerImage} className="card-img" alt="Upload Tickets" style={{ width: '100%', padding: '0.5px' }}/>
                                 <Typography>
-                                    This is a brief description of the first feature your app offers.
+                                We provide an intuitive interface for easy engagement, encouraging active participation in the donation workflow
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -44,11 +44,11 @@ const FeatureCard = () => {
                         <Card>
                             <CardContent className="card-content">
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    Upload Tickets
+                                MunchMap minimizes food waste while fostering community involvement
                                 </Typography>
-                                <img src={UploadImage} className="card-img" alt="Upload Tickets"/>
+                                <img src={UploadImage} className="card-img" alt="Upload Tickets" style={{ width: '52%', padding: '18px' }}/>
                                 <Typography>
-                                    This is a brief description of the first feature your app offers.
+                                Through technology and strategic partnerships, we aim for positive social and environmental impact
                                 </Typography>
                             </CardContent>
                         </Card>
