@@ -16,8 +16,8 @@ import Box from '@mui/material/Box';
 
 const RestaurantForm = () => {
   const [username, setUsername] = useState('');
-  const [firstName, setFirstName] = useState(''); // New state for password
-  const [lastName, setLastName] = useState('');
+  const [first_name, setFirstName] = useState(''); // New state for password
+  const [last_name, setLastName] = useState('');
   const [password, setPassword] = useState('');
   const [phone_number, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -99,8 +99,8 @@ const RestaurantForm = () => {
       </Dialog>
       <div className="input-group">
     <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
-    <input type="text" placeholder="First Name" value={firstName} onChange={handleFirstNameChange} /> {/* first name */}
-    <input type="text" placeholder="Last Name" value={lastName} onChange={handleLastNameChange} /> {/* last name */}
+    <input type="text" placeholder="First Name" value={first_name} onChange={handleFirstNameChange} /> {/* first name */}
+    <input type="text" placeholder="Last Name" value={last_name} onChange={handleLastNameChange} /> {/* last name */}
     <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
     <input type="text" placeholder="Phone" value={phone_number} onChange={handlePhoneChange} /> 
     <input type="text" placeholder="Email" value={email} onChange={handleEmailChange} />
