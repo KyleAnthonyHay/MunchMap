@@ -16,9 +16,10 @@ import Box from '@mui/material/Box';
 
 const RestaurantForm = () => {
   const [username, setUsername] = useState('');
-  const [firstName, setFirstName] = useState(''); // New state for password
-  const [lastName, setLastName] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState(''); // New state for password
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [concept, setRestaurantType] = useState('');
   const [phone_number, setPhone] = useState('');
   const [email, setEmail] = useState('');
 
@@ -33,18 +34,21 @@ const RestaurantForm = () => {
     setUsername(event.target.value);
   };
 
-  const handleFirstNameChange = (event) => { // New handler for password
-    setFirstName(event.target.value);
-  };
-
-  const handleLastNameChange = (event) => {
-    setLastName(event.target.value);
-  };
-
   const handlePasswordChange = (event) => { // New handler for password
     setPassword(event.target.value);
   };
 
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleAddressChange = (event) => {
+    setAddress(event.target.value);
+  };
+
+  const handleRestaurantTypeChange = (event) => {
+    setRestaurantType(event.target.value);
+  };
 
   const handlePhoneChange = (event) => {
     setPhone(event.target.value);
@@ -60,23 +64,25 @@ const RestaurantForm = () => {
         username,
         password // Include password in the user object
       },
-      first_name,
-      last_name,
+      name,
+      address,
+      concept,
       phone_number,
       email
     };
 
     // Navigate and make API request
     try {
-      const response = await axios.post('http://localhost:8000/api/volunteers/', credentials);
+      console.log(credentials);
+      const response = await axios.post(API_URL, credentials);
       console.log(response);
       navigate('/login');
     } catch (error) {
       console.log("An error occurred:", error.response);
       setOpenDialog(true);
     }
-  };
-
+  
+  }
   return (
     <div>
       <Dialog
@@ -99,12 +105,12 @@ const RestaurantForm = () => {
       </Dialog>
       <div className="input-group">
     <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
-    <input type="text" placeholder="First Name" value={firstName} onChange={handleFirstNameChange} /> {/* first name */}
-    <input type="text" placeholder="Last Name" value={lastName} onChange={handleLastNameChange} /> {/* last name */}
-    <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
-    <input type="text" placeholder="Phone" value={phone_number} onChange={handlePhoneChange} /> 
+    <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} /> {/* New password input */}
+    <input type="text" placeholder="Name" value={name} onChange={handleNameChange} />
+    <input type="text" placeholder="Phone" value={phone_number} onChange={handlePhoneChange} />
     <input type="text" placeholder="Email" value={email} onChange={handleEmailChange} />
-   
+    <input type="text" placeholder="Address" value={address} onChange={handleAddressChange} />
+    <input type="text" placeholder="Restaurant Type" value={concept} onChange={handleRestaurantTypeChange} />
   </div>
   <div className="remember-forgot">
     <label>
@@ -114,7 +120,7 @@ const RestaurantForm = () => {
   </div>
   {/* call renderConditionally() every time any of the flags change */}
   {/* {renderConditionally()} */}
-  <button className="login-button" onClick={handleSignUp}>Volunteer Sign Up</button>
+  <button className="login-button" onClick={handleSignUp}>Restaurant Sign Up</button>
   <div className="register-link">
     Already have an account? <Link to="/login">Log In</Link>
   </div></div>

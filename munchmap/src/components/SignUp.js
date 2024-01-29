@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './SignUp.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Ensure axios is imported if you're using it
+
 import AdminForm from './SignUpComponents/AdminForm';
 import VolunteerForm from './SignUpComponents/VolunteerForm';
 import SpecialistForm from './SignUpComponents/SpecialistForm';
@@ -15,6 +16,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
+import RestaurantForm from './SignUpComponents/RestaurantForm';
 
 const API_URL = 'http://localhost:8000/api/restaurants/'; // Replace with your API URL
 
@@ -22,7 +24,7 @@ function SignUp() {
   const [AdminFlag, setAdminFlag] = useState(false);
   const [VolunteerFlag, setVolunteerFlag] = useState(false);
   const [SpecialistFlag, setSpecialistFlag] = useState(false);
-  const [RestaurantFlag, setRestaurantFlag] = useState(false);
+  const [RestaurantFlag, setRestaurantFlag] = useState(true);
   
   
   function turnonAdminFlag() {
@@ -182,34 +184,17 @@ function SignUp() {
         { AdminFlag && <AdminForm/> }
         { VolunteerFlag && <VolunteerForm/>}
         { SpecialistFlag && <SpecialistForm/>}
+        { RestaurantFlag && <RestaurantForm/>}
+
         
 
 
 
-        <div className="input-group">
-          <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
-          <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} /> {/* New password input */}
-          <input type="text" placeholder="Name" value={name} onChange={handleNameChange} />
-          <input type="text" placeholder="Phone" value={phone_number} onChange={handlePhoneChange} />
-          <input type="text" placeholder="Email" value={email} onChange={handleEmailChange} />
-          <input type="text" placeholder="Address" value={address} onChange={handleAddressChange} />
-          <input type="text" placeholder="Restaurant Type" value={concept} onChange={handleRestaurantTypeChange} />
-        </div>
-        <div className="remember-forgot">
-          <label>
-            <input type="checkbox" /> Remember me
-          </label>
-          <a href="#">Forgot Password?</a>
-        </div>
-        {/* call renderConditionally() every time any of the flags change */}
-        {/* {renderConditionally()} */}
-        <button className="login-button" onClick={handleSignUp}>Sign Up</button>
-        <div className="register-link">
-          Already have an account? <Link to="/login">Log In</Link>
-        </div>
+       
       </div>
     </div>
   );
 }
 
 export default SignUp;
+
