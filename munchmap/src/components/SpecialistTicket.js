@@ -24,6 +24,7 @@ const SpecialistTicket = ({ ticket }) => {
           <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
             <FormatListNumberedIcon color="action" sx={{ mr: 0.5 }} /> Quantity: {ticket.quantity}
           </Typography>
+          {/* add checked button */}
         </CardContent>
       </CardActionArea>
     </Card>

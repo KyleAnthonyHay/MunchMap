@@ -55,54 +55,6 @@ function SignUp() {
   }
 
 
-/*
-  function AdminForm() {
-    return (
-      <button className="login-button" onClick={handleAdminSignUp}>Sign Up</button>
-    )
-  }
-  function VolunteerForm() {
-    return (
-      <button className="login-button" onClick={handlevolunteerSignUp}>Sign Up</button>
-    )
-  }
-  function SpecialistForm() {
-    return (
-      <button className="login-button" onClick={handlespecialistSignUp}>Sign Up</button>
-    )
-  }
-  function RestarauntForm() {
-    return (
-      <button className="login-button" onClick={handlerestaurantformSignUp}>Sign Up</button>
-    )
-  }
-
-  // ***************************** Render Condtitionally(can be removed) *****************************
-  function renderConditionally() {
-    if (AdminFlag) {
-      console.log("Conditional Render: AdminForm");
-      AdminFlag = false;
-      return AdminForm();
-    }
-    else if (VolunteerFlag) {
-      console.log("Conditional Render: VolunteerForm");
-      VolunteerFlag = false;
-      return VolunteerForm();
-    }
-    else if (SpecialistFlag) {
-      console.log("Conditional Render: SpecialistForm");
-      SpecialistFlag = false;
-      return SpecialistForm();
-    }
-    else if (RestaurantFlag) {
-      console.log("Conditional Render: RestarauntForm");
-      RestaurantFlag = false;
-      return RestarauntForm();
-    }
-  }
-
-  */
-
   // ***************************** Render Condtitionally(can be removed) *****************************
 
   const [openDialog, setOpenDialog] = useState(false);
