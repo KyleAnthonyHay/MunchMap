@@ -3,6 +3,10 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import SpecialistTicket from '../components/SpecialistTicket';
 import './SpecialistPage.css'
+import Typography from '@mui/material/Typography';
+import { Box, Grid } from '@mui/material';
+import SignOutButton from '../components/SignOutButton';
+
 const SpecialistPage = () => {
   const [tickets, setTickets] = useState([]);
 
@@ -20,42 +24,25 @@ const SpecialistPage = () => {
     };
 
     fetchTickets();
-  }
-  , []);
-
-  const handleCheck = async (ticketId) => {
-    const token = localStorage.getItem('token');
-    try {
-      const response = await axios.post(`http://localhost:8000/api/tickets/${ticketId}/check_ticket/`, {}, {
-        headers: { Authorization: `Token ${token}` }
-      });
-      console.log(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-
-
-
+  }, []);
 
   return (
     <div>
-      {tickets.map((ticketss) => (
-        // <li key={ticket.id}>
-        //   <h1>{ticket.name}</h1>
-        //   <h2>{ticket.restaurant.location}</h2> 
-        //   <h3>{ticket.food_category}</h3>
-        //   <h4>{ticket.quantity}</h4>
-        //   <button onClick={() => handleCheck(ticket.id)}>Check</button>
-        // </li>
-        <SpecialistTicket
-      ticket = {ticketss}/>
-      )
-      )}
-      
+      <SignOutButton />
+    <Grid container justifyContent="center" alignItems="center">
+      <Grid item xs={12} md={5}>
+        <Box style={{ position: 'relative', padding: { xs: 3, md: 6 }, paddingBottom: { md: 0 }, width: 500 }}>
+          <Typography variant="h2" component="h2" style={{ fontSize: '40px', padding: '20px', textAlign: 'center' }}>
+            Tickets to Inspect
+          </Typography>
+          {tickets.map((ticketss) => (
+            <SpecialistTicket ticket={ticketss} key={ticketss.id} />
+          ))}
+        </Box>
+      </Grid>
+    </Grid>
     </div>
   )
 }
 
-export default SpecialistPage
+export default SpecialistPage;
