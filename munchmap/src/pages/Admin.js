@@ -3,6 +3,7 @@ import axios from 'axios';
 import RestarauntTicket from '../components/RestarauntTicket';
 import './Admin.css';
 import ShelterTicket from '../components/ShelterTicket';
+import Typography from '@mui/material/Typography';
 
 const AdminView = () => {
     const [tickets, setTickets] = useState([]);
@@ -83,8 +84,11 @@ const AdminView = () => {
             {/* <h1>Admin Dashboard</h1>
             <h2>Tickets</h2> */}
             {/* ******************************** Restaurant Tickets ******************************** */}
-            <div className="admin-list">
-            <h2>Restaraunt Tickets</h2>
+            <div className="admin-list" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+            {/*<h2>Restaraunt Tickets</h2>*/}
+            <Typography variant="h2" component="h2" style={{ fontSize: '40px' }}>
+            Restaraunt Tickets
+            </Typography>
                 {tickets.map(ticket => (
                     <RestarauntTicket 
                         ticketNumber={ticket.id}
@@ -100,8 +104,11 @@ const AdminView = () => {
             </div>
 
             {/* ******************************** Shelter Tickets ******************************** */}
-            <div className="admin-list">
-                <h2>Shelter Tickets</h2>
+            <div className="admin-list" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                {/*<h2>Shelter Tickets</h2>*/}
+                <Typography variant="h2" component="h2" style={{ fontSize: '40px' }}>
+                    Shelter Tickets
+                </Typography>
                 {shelters.map((shelter, index) => (
                     <ShelterTicket
                     key={index}
