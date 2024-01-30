@@ -14,11 +14,13 @@ const SignOutButton = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '15px' }}>
-      <Button variant="outlined" onClick={handleSignOut}>
-        Sign Out
-      </Button>
-    </div>
+    <>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '15px' }}>
+        <Button variant="outlined" onClick={handleSignOut}>
+          Sign Out
+        </Button>
+      </div>
+    </>
   );
 };
 
