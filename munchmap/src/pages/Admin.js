@@ -74,21 +74,24 @@ const AdminView = () => {
         }
     };
 
-    const getNotDelieveredShelterRequests = async () => {
-        const token = localStorage.getItem('token');
-        try {
-            const response = await axios.get('http://localhost:8000/api/shelter-requests/list_not_fulfilled_requests/',
-                {
-                    headers: { Authorization: `Token ${token}` }
-                });
-            setShelterRequests(response.data);
-        } catch (err) {
-            console.log(err)
-            setError(err);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+    useEffect(() => {
+        const getNotDelieveredShelterRequests = async () => {
+            const token = localStorage.getItem('token');
+            try {
+                const response = await axios.get('http://localhost:8000/api/shelter-requests/list_not_fulfilled_requests/',
+                    {
+                        headers: { Authorization: `Token ${token}` }
+                    });
+                setShelterRequests(response.data);
+            } catch (err) {
+                console.log(err)
+                setError(err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        getNotDelieveredShelterRequests();
+    }, []);
 
 
     const matchTicketsWithShelterRequests = async () => {
@@ -189,14 +192,14 @@ const AdminView = () => {
                 <Typography variant="h2" component="h2" style={{ fontSize: '40px' }}>
                     Shelter Tickets
                 </Typography>
-                {shelters.map((shelter, index) => (
+                {shelterRequests.map((shelterRequests, index) => (
                     <ShelterTicket
                     key={index}
-                    ticketNumber={shelter.ticketNumber}
-                    name={shelter.name}
-                    location={shelter.location}
-                    contactInfo={shelter.contactInfo}
-                    donationType={shelter.donationType}
+                    ticketNumber={shelterRequests.id}
+                    name={shelterRequests.shelter.name}
+                    location={shelterRequests.shelter.address}
+                    contactInfo={shelterRequests.shelter.phone_number}
+                    donationType={shelterRequests.food_category}
                 />
                 ))}
             </div>
