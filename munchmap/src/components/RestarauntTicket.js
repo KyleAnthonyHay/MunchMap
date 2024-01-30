@@ -34,7 +34,7 @@ import axios from 'axios';
 //   }
 // };
 
-const RestarauntTicket = ({ ticketNumber, name, location, contactInfo, donationType, expirationDate, inspected }) => {
+const RestarauntTicket = ({ ticketNumber, name, location, contactInfo, donationType, expirationDate, inspected, quantity }) => {
   return (
     <Card sx={{ width: 500, m: 2, boxShadow: 3 }}>
       <CardActionArea>
@@ -60,7 +60,10 @@ const RestarauntTicket = ({ ticketNumber, name, location, contactInfo, donationT
           <Typography variant="body2" sx={{ color: inspected ? green[500] : red[500], display: 'flex', alignItems: 'center' }}>
             {inspected ? <CheckCircleOutlineIcon sx={{ mr: 0.9 }} /> : <ErrorOutlineIcon sx={{ mr: 0.9 }} />} Inspected: {inspected ? 'Yes' : 'No'}
           </Typography>
-          <Button variant="outlined">Match to Shelter</Button>
+          <Typography variant="body2" color="text.secondary">
+          <VolunteerActivismIcon color="action" sx={{ mr: 0.6 }} /> Quantity: {quantity}
+          </Typography>
+          {/* <Button variant="outlined">Match to Shelter</Button> */}
         </CardContent>
       </CardActionArea>
     </Card>

@@ -53,7 +53,8 @@ function LandingPage() {
             food_category: ticketData.food_category,
             expiration_date: ticketData.expiration_date,
             checked: ticketData.checked,
-            restaurant: restaurantId
+            restaurant: restaurantId,
+            quantity: ticketData.quantity
         }, {
             headers: { Authorization: `Token ${token}` }
         })

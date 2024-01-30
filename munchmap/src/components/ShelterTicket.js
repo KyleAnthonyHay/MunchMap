@@ -7,8 +7,9 @@ import { CardActionArea } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 
-const ShelterTicket = ({ ticketNumber, name, location, contactInfo, donationType }) => {
+const ShelterTicket = ({ ticketNumber, name, location, contactInfo, donationType, quantityRequested }) => {
   return (
     <Card sx={{ width: 500, m: 2, boxShadow: 3 }}>
       <CardActionArea>
@@ -25,8 +26,11 @@ const ShelterTicket = ({ ticketNumber, name, location, contactInfo, donationType
           <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
             <ContactPhoneIcon color="action" sx={{ mr: 0.9 }} /> Contact Info: {contactInfo}
           </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
+            <ProductionQuantityLimitsIcon color="action" sx={{ mr: 0.9 }} /> Quantity Requested: {quantityRequested}
+          </Typography>
           <Typography variant="body2" color="text.secondary">
-            <VolunteerActivismIcon color="action" sx={{ mr: 0.6 }} /> Donation Type: {donationType}
+            <VolunteerActivismIcon color="action" sx={{ mr: 0.9 }} /> Donation Type: {donationType}
           </Typography>
         </CardContent>
       </CardActionArea>
