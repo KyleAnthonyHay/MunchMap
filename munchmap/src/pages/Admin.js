@@ -17,7 +17,7 @@ const AdminView = () => {
         const fetchTickets = async () => {
             try {
                 // Replace with the actual API URL and authentication method
-                const response = await axios.get('http://localhost:8000/api/tickets/list_unchecked_tickets/', 
+                const response = await axios.get('http://localhost:8000/api/tickets/list_checked_tickets/', 
                 {
                     headers: { Authorization: `Token ${token}` }
                 });

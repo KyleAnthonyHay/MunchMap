@@ -6,13 +6,23 @@ import { CardActionArea, Checkbox, FormControlLabel } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import axios from 'axios';
 
 const SpecialistTicket = ({ ticket }) => {
   // State to track if the checkbox is checked
   const [checked, setChecked] = useState(false);
 
-  const markAsInspected = () => {
-    // You can add more functionality here later
+  const markAsInspected = async (ticketId) => {
+    const token = localStorage.getItem('token');
+    console.log(ticketId);
+    try {
+      const response = await axios.post(`http://localhost:8000/api/tickets/${ticketId}/check_ticket/`, {}, {
+        headers: { Authorization: `Token ${token}` }
+      });
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }
     console.log("Ticket marked as inspected");
   };
 
@@ -20,7 +30,7 @@ const SpecialistTicket = ({ ticket }) => {
   const handleChange = (event) => {
     setChecked(event.target.checked);
     if (event.target.checked) {
-      markAsInspected();
+      markAsInspected(ticket.id);
     }
   };
 
