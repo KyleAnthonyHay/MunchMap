@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -10,6 +10,29 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import Button from '@mui/material/Button';
+
+import axios from 'axios';
+
+// const [shelterRequests, setShelterRequests] = useState([]);
+// const [isLoading, setIsLoading] = useState(true);
+// const [error, setError] = useState(null);
+
+// const matchTicketsWithShelterRequests = async () => {
+//   const token = localStorage.getItem('token');
+//   try {
+//       const response = await axios.post('http://localhost:8000/api/tickets/match_tickets/',
+//           {
+//               headers: { Authorization: `Token ${token}` }
+//           });
+//       setShelterRequests(response.data);
+//   } catch (err) {
+//       console.log(err)
+//       setError(err);
+//   } finally {
+//       setIsLoading(false);
+//   }
+// };
 
 const RestarauntTicket = ({ ticketNumber, name, location, contactInfo, donationType, expirationDate, inspected }) => {
   return (
@@ -37,6 +60,7 @@ const RestarauntTicket = ({ ticketNumber, name, location, contactInfo, donationT
           <Typography variant="body2" sx={{ color: inspected ? green[500] : red[500], display: 'flex', alignItems: 'center' }}>
             {inspected ? <CheckCircleOutlineIcon sx={{ mr: 0.9 }} /> : <ErrorOutlineIcon sx={{ mr: 0.9 }} />} Inspected: {inspected ? 'Yes' : 'No'}
           </Typography>
+          <Button variant="outlined">Match to Shelter</Button>
         </CardContent>
       </CardActionArea>
     </Card>

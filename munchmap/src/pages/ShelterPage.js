@@ -7,6 +7,8 @@ import SignOutButton from '../components/SignOutButton'
 import Typography from '@mui/material/Typography';
 import { Box, Grid } from '@mui/material';
 import Button from '@mui/material/Button';
+// styles
+import '../components/RestaurantForm.css';
 
 const ShelterPage = () => {
   const [shelter, setShelter] = useState(null);
@@ -60,38 +62,40 @@ const ShelterPage = () => {
     <div>
       <SignOutButton/>
       <Grid container justifyContent="center" alignItems="center">
-      <Grid item xs={12} md={5}>
-        <Box style={{ position: 'relative', padding: { xs: 3, md: 6 }, paddingBottom: { md: 0 }, width: 500 }}>
-          <Typography variant="h2" component="h2" style={{ fontSize: '40px', padding: '20px', textAlign: 'center' }}>
-            Create a Shelter Ticket
-          </Typography>
-          {/* {tickets.map((ticketss) => (
-            <SpecialistTicket ticket={ticketss} key={ticketss.id} />
-          ))} */}
-        </Box>
+        <Grid item xs={12} md={6}>
+            <Typography variant="h2" component="h2" style={{ fontSize: '40px', padding: '20px', textAlign: 'center', whiteSpace: 'nowrap' }}>
+              Create a Shelter Ticket
+            </Typography>
+            <form onSubmit={handleSubmit} className="donation-form">
+              <div className="form-group">
+                <label>
+                  Quantity:
+                  <input
+                    type="number"
+                    value={quantity_requested}
+                    onChange={(event) => setQuantity(event.target.value)}
+                    className="form-control"
+                  />
+                </label>
+              </div>
+              <div className="form-group">
+                <label>
+                  Food Category:
+                  <input
+                    type="number"
+                    value={food_category}
+                    onChange={(event) => setFoodCategory(event.target.value)}
+                    className="form-control"
+                  />
+                </label>
+              </div>
+                <Button type="submit" variant="contained" color="primary" onClick={handleSubmit}>
+                  Create Ticket
+                </Button>
+            </form>
+
+        </Grid>
       </Grid>
-    </Grid>
-    <form onSubmit={handleSubmit}>
-      <label>
-        Quantity:
-        <input
-          type="number"
-          value={quantity_requested}
-          onChange={(event) => setQuantity(event.target.value)}
-        />
-      </label>
-      <label>
-        Food Category:
-        <input
-          type="number"
-          value={food_category}
-          onChange={(event) => setFoodCategory(event.target.value)}
-        />
-      </label>
-      <Button type="submit" variant="contained" color="primary">
-        Create Ticket
-      </Button>
-    </form>
     </div>
   )
 }
