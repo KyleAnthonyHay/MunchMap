@@ -95,27 +95,108 @@ function Login() {
       })
   }
   
+  // handle volunteer via axios post
   function handleVolunteerLogin() {
-    // check if Email and Password field is filled
-    if (username === '' || password === '') {
-      setOpenDialog(true);
-    } else {
-      navigate('/volunteer')
-    }
+    const credentials = {
+      username,
+      password
+    };
+    
+    return axios.post(API_URL, credentials)
+      .then(response => {
+        if (response.status === 200 && response.data.token) {
+          localStorage.setItem('token', response.data.token);
+          navigate('/volunteer')
+        }
+        return response.data;
+      })
+      .catch(error => {
+        // Clear the token and fields
+        localStorage.removeItem('token');
+        setUsername('');
+        setPassword('');
+
+        if (error.response && error.response.status === 401 || error.response.status === 403) {
+          console.log('Unauthorized, logging out ...');
+          localStorage.removeItem('token');
+          setOpenDialog(true);
+        }
+        else {
+          console.log('An error occurred:', error.response);
+          setOpenDialog(true);
+        }
+      }
+      )
   }
+
+
+// handle specialist via axios post
   function handleSpecialistLogin() {
-    if (username === '' || password === '') {
-      setOpenDialog(true);
-    } else {
-    navigate('/specialist')
-    }
+    const credentials = {
+      username,
+      password
+    };
+
+
+    return axios.post(API_URL, credentials)
+      .then(response => {
+        if (response.status === 200 && response.data.token) {
+          localStorage.setItem('token', response.data.token);
+          navigate('/specialist')
+        }
+        return response.data;
+      }
+      )
+      .catch(error => {
+        // Clear the token and fields
+        localStorage.removeItem('token');
+        setUsername('');
+        setPassword('');
+    
+        if (error.response && error.response.status === 401 || error.response.status === 403) {
+          console.log('Unauthorized, logging out ...');
+          localStorage.removeItem('token');
+          setOpenDialog(true);
+        }
+        else {
+          console.log('An error occurred:', error.response);
+          setOpenDialog(true);
+        }
+      }
+      )
   }
+
+  // handle shelter via axios post
   function handleShelterLogin() {
-    if (username === '' || password === '') {
-      setOpenDialog(true);
-    }else {
-    navigate('/shelter')
-    }
+    const credentials = {
+      username,
+      password
+    };
+
+    return axios.post(API_URL, credentials)
+      .then(response => {
+        if (response.status === 200 && response.data.token) {
+          localStorage.setItem('token', response.data.token);
+          navigate('/shelter')
+        }
+        return response.data;
+      })
+      .catch(error => {
+        // Clear the token and fields 
+        localStorage.removeItem('token');
+        setUsername('');
+        setPassword('');
+
+        if (error.response && error.response.status === 401 || error.response.status === 403) {
+          console.log('Unauthorized, logging out ...');
+          localStorage.removeItem('token');
+          setOpenDialog(true);
+        }
+        else {
+          console.log('An error occurred:', error.response);
+          setOpenDialog(true);
+        }
+      }) 
   }
 
   return (
