@@ -6,12 +6,28 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea, Checkbox, FormControlLabel } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
+import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import Button from '@mui/material/Button';
 
 let seenTickets = [];
 
 export const VolunteerTicket = ({ key, ShelterName, ShelterAddress, FoodCategory, QuantityRequested, RestaurantList }) => {
+
+  const uniqueRestaurantNames = Array.from(new Set(RestaurantList.map(ticket => ticket.restaurant.address)));
+
+  // function RenderUnrepeatedRestaurants(RestaurantList) {
+  //   {seenTickets.includes(RestaurantList.restaurant.id)? null : (
+  //     <>
+  //       seenTickets.push(RestaurantList.restaurant.id)
+  //       {RestarauntTicket.restaurant.name}
+  //       {RestarauntTicket.restaurant.address}
+  //       {RestarauntTicket.restaurant.id}
+  //     </>
+  //     )}
+
+  // }
+
   return (
     <Card sx={{ maxWidth: 500, m: 2, boxShadow: 3, listStyle: 'none', padding: 0 }}>
     <CardActionArea>
@@ -32,16 +48,18 @@ export const VolunteerTicket = ({ key, ShelterName, ShelterAddress, FoodCategory
         <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
           <FormatListNumberedIcon color="action" sx={{ mr: 1.5 }} /> Quantity: {QuantityRequested}
         </Typography>
-        {/* add delivered button */}
-        <Button variant="contained" color="success" onClick={() => {console.log("Delivered!")}}>Mark as Delivered</Button>
-        {RestaurantList.map((RestarauntTicket) => (
+         {/* Pickup Locations */}
+         <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
+          <DeliveryDiningIcon color="action" sx={{ mr: 1.5 }} /> Pickup Locations: {uniqueRestaurantNames.map((RestarauntTicket) => (
             <>
-              {RestarauntTicket.restaurant.name}
-              {RestarauntTicket.restaurant.address}
-              {RestarauntTicket.restaurant.id}
+            {RestarauntTicket}
             </>
           )
           )}
+        </Typography>
+        
+          {/* add delivered button */}
+        <Button variant="contained" color="success" onClick={() => {console.log("Delivered!")}}>Mark as Delivered</Button>
       </CardContent>
     </CardActionArea>
   </Card>
