@@ -2,6 +2,11 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
+import Typography from '@mui/material/Typography';
+import { Box, Grid } from '@mui/material';
+import SignOutButton from '../components/SignOutButton';
+import { VolunteerTicket } from '../components/VolunteerTicket';
+
 
 
 
@@ -44,12 +49,14 @@ const VolunteerPage = () => {
 
   return (
     <div>
+      <SignOutButton />
       {shelterRequests.map((shelterRequest) => (
         <li key={shelterRequest.id}>
           <h1>{shelterRequest.shelter.name}</h1>
           <h2>{shelterRequest.shelter.address}</h2> 
           <h3>{shelterRequest.food_category}</h3>
           <h4>{shelterRequest.quantity_requested}</h4>
+          <VolunteerTicket/>
         </li>
       )
       )}
