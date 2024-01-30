@@ -1,3 +1,8 @@
+/* doest work */
+.page-container{
+  display: flex; 
+}
+
 .login-container {
     display: flex;
     justify-content: center;
@@ -69,6 +74,10 @@
   .register-link a {
     color: blue;
     text-decoration: none;
+  }
+
+  .back-button {
+    align-items: left;
   }
   
   /* Add additional styling as needed */

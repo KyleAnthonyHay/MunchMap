@@ -9,6 +9,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
+import BackButton from './BackButton';
 
 
 const API_URL = 'http://localhost:8000/api/login/';
@@ -219,27 +220,31 @@ function Login() {
           </Button>
         </DialogActions>
       </Dialog>
-      <div className="login-form">
-        <div className="toggle-buttons">
-          <button className="title">Login</button>
-        </div>
-        <div className="input-group">
-          <input type="username" placeholder="Email" value={username} onChange={handleUsernameChange} />
-          <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
-        </div>
-        <div className="remember-forgot">
-          <label>
-            <input type="checkbox" /> Remember me
-          </label>
-          <a href="#">Forgot Password?</a>
-        </div>
-        <button className="login-button" onClick={handleLogin}>Log in as Admin</button>
-        <button className="login-button" onClick={handleUserLogin}>Log in as Restaraunt</button>
-        <button className="login-button" onClick={handleSpecialistLogin}>Log in as Specialist</button>
-        <button className="login-button" onClick={handleVolunteerLogin}>Log in as Volunteer</button>
-        <button className="login-button" onClick={handleShelterLogin}>Log in as Shelter</button>
-        <div className="register-link">
-          Don’t have an account? <Link to="/signup">Sign Up</Link>
+      
+      <div className='page-containter'>
+        <div className='back-button'><BackButton/></div>
+        <div className="login-form">
+          <div className="toggle-buttons">
+            <button className="title">Login</button>
+          </div>
+          <div className="input-group">
+            <input type="username" placeholder="Email" value={username} onChange={handleUsernameChange} />
+            <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+          </div>
+          <div className="remember-forgot">
+            <label>
+              <input type="checkbox" /> Remember me
+            </label>
+            <a href="#">Forgot Password?</a>
+          </div>
+          <button className="login-button" onClick={handleLogin}>Log in as Admin</button>
+          <button className="login-button" onClick={handleUserLogin}>Log in as Restaraunt</button>
+          <button className="login-button" onClick={handleSpecialistLogin}>Log in as Specialist</button>
+          <button className="login-button" onClick={handleVolunteerLogin}>Log in as Volunteer</button>
+          <button className="login-button" onClick={handleShelterLogin}>Log in as Shelter</button>
+          <div className="register-link">
+            Don’t have an account? <Link to="/signup">Sign Up</Link>
+          </div>
         </div>
       </div>
     </div>

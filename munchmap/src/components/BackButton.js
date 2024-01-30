@@ -6,7 +6,7 @@ const BackButton = () => {
   const navigate = useNavigate();
 
   const handleBackButton = () => {
-    navigate('/login');
+    navigate('/');
   };
 
   return (
