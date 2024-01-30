@@ -9,6 +9,7 @@ import SignOutButton from '../components/SignOutButton';
 const AdminView = () => {
     const [tickets, setTickets] = useState([]);
     const [expiredTickets, setExpiredTickets] = useState([]);
+    const [shelterRequests, setShelterRequests] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -73,7 +74,38 @@ const AdminView = () => {
         }
     };
 
+    const getNotDelieveredShelterRequests = async () => {
+        const token = localStorage.getItem('token');
+        try {
+            const response = await axios.get('http://localhost:8000/api/shelter-requests/list_not_fulfilled_requests/',
+                {
+                    headers: { Authorization: `Token ${token}` }
+                });
+            setShelterRequests(response.data);
+        } catch (err) {
+            console.log(err)
+            setError(err);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
+
+    const matchTicketsWithShelterRequests = async () => {
+        const token = localStorage.getItem('token');
+        try {
+            const response = await axios.post('http://localhost:8000/api/tickets/match_tickets/',
+                {
+                    headers: { Authorization: `Token ${token}` }
+                });
+            setShelterRequests(response.data);
+        } catch (err) {
+            console.log(err)
+            setError(err);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
 
 
