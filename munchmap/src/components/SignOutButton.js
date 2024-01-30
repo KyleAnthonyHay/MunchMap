@@ -13,10 +13,17 @@ const SignOutButton = () => {
     navigate('/');
   };
 
+  const handleBackButton = () => {
+    navigate('/login');
+  };
+
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '15px' }}>
-        <Button variant="outlined" onClick={handleSignOut}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '15px' }}>
+        <Button variant="outlined" onClick={handleBackButton} style={{ marginRight: 'auto' }}>
+          Back
+        </Button>
+        <Button variant="contained" onClick={handleSignOut}>
           Sign Out
         </Button>
       </div>
