@@ -50,18 +50,40 @@ const VolunteerPage = () => {
   return (
     <div>
       <SignOutButton />
-      {shelterRequests.map((shelterRequest) => (
-        <li key={shelterRequest.id}>
-          <h1>{shelterRequest.shelter.name}</h1>
-          <h2>{shelterRequest.shelter.address}</h2> 
-          <h3>{shelterRequest.food_category}</h3>
-          <h4>{shelterRequest.quantity_requested}</h4>
-          <VolunteerTicket/>
-        </li>
-      )
-      )}
+      <Grid container justifyContent="center" alignItems="center">
+      <Grid item xs={12} md={5}>
+        <Box style={{ position: 'relative', padding: { xs: 3, md: 6 }, paddingBottom: { md: 0 }, width: 500 }}>
+          <Typography variant="h2" component="h2" style={{ fontSize: '40px', padding: '20px', textAlign: 'center' }}>
+            Deliver to Shelters
+          </Typography>
+          {shelterRequests.map((shelterRequest) => (
+            <>
+              <VolunteerTicket key={shelterRequest.id} 
+              ShelterName={shelterRequest.shelter.name} 
+              ShelterAddress={shelterRequest.shelter.address}
+              FoodCategory={shelterRequest.food_category}
+              QuantityRequested={shelterRequest.quantity_requested}
+              RestaurantList={shelterRequest.tickets}
+              />
+            </>
+          )
+          )}
+        </Box>
+      </Grid>
+    </Grid>
     </div>
   )
 }
 
 export default VolunteerPage
+
+// {shelterRequests.map((shelterRequest) => (
+//   <li key={shelterRequest.id}>
+//     <h1>{shelterRequest.shelter.name}</h1>
+//     <h2>{shelterRequest.shelter.address}</h2> 
+//     <h3>{shelterRequest.food_category}</h3>
+//     <h4>{shelterRequest.quantity_requested}</h4>
+//     <VolunteerTicket/>
+//   </li>
+// )
+// )}
