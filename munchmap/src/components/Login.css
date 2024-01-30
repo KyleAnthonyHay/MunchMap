@@ -13,7 +13,7 @@
     text-align: center;
   }
   
-  .toggle-buttons {
+  /*.toggle-buttons {
     margin-bottom: 20px;
   }
   
@@ -24,7 +24,7 @@
     background: none;
     font-weight: bold;
     cursor: pointer;
-  }
+  }*/
   
   .input-group input {
     width: 100%;
@@ -41,7 +41,7 @@
     font-size: 0.9em;
   }
   
-  .login-button {
+  /*login-button {
     width: 100%;
     padding: 10px;
     margin: 20px 0;
@@ -51,7 +51,18 @@
     color: white;
     cursor: pointer;
   }
+
+  .login-buttonn {
+    width: 100%;
+    color: #FFFFFF;
+    transition: background-color 0.3s ease;
+    background-color: #6273D9;
+    margin: 1px 3px;
+  }
   
+  .login-buttonn:hover {
+    background-color: #5F65D9;
+  }*/
   .social-login button {
     width: 48%;
     padding: 10px;
@@ -67,7 +78,7 @@
   }
   
   .register-link a {
-    color: blue;
+    color: #6273D9;
     text-decoration: none;
   }
   
