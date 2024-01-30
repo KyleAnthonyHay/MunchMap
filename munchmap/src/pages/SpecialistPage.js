@@ -36,6 +36,7 @@ const SpecialistPage = () => {
             Tickets to Inspect
           </Typography>
           {tickets.map((ticketss) => (
+            console.log(ticketss),
             <SpecialistTicket ticket={ticketss} key={ticketss.id} />
           ))}
         </Box>

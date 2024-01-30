@@ -6,6 +6,8 @@ import ShelterTicket from '../components/ShelterTicket';
 import Typography from '@mui/material/Typography';
 import SignOutButton from '../components/SignOutButton';
 
+import Button from '@mui/material/Button';
+
 const AdminView = () => {
     const [tickets, setTickets] = useState([]);
     const [expiredTickets, setExpiredTickets] = useState([]);
@@ -101,7 +103,7 @@ const AdminView = () => {
                 {
                     headers: { Authorization: `Token ${token}` }
                 });
-            setShelterRequests(response.data);
+            console.log(response);
         } catch (err) {
             console.log(err)
             setError(err);
@@ -110,6 +112,9 @@ const AdminView = () => {
         }
     };
 
+    const testConsoleLog = () => {
+        console.log('test');
+    }
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
 
@@ -118,14 +123,12 @@ const AdminView = () => {
         <div>
             <SignOutButton />
         <div className="admin-view">
-            {/* <h1>Admin Dashboard</h1>
-            <h2>Tickets</h2> */}
             {/* ******************************** Restaurant Tickets ******************************** */}
             <div className="admin-list" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-            {/*<h2>Restaraunt Tickets</h2>*/}
             <Typography variant="h2" component="h2" style={{ fontSize: '40px' }}>
             Restaraunt Tickets
             </Typography>
+            <Button variant="contained" onClick={matchTicketsWithShelterRequests}>Match Tickets to Shelters</Button>
                 {tickets.map(ticket => (
                     <RestarauntTicket 
                         ticketNumber={ticket.id}
@@ -135,6 +138,7 @@ const AdminView = () => {
                         donationType={ticket.food_category}
                         expirationDate={ticket.expiration_date}
                         inspected={ticket.checked}
+                        quantity={ticket.quantity}
                     />
                 ))}
                 {console.log(tickets)}
@@ -146,14 +150,15 @@ const AdminView = () => {
                 <Typography variant="h2" component="h2" style={{ fontSize: '40px' }}>
                     Shelter Tickets
                 </Typography>
-                {shelterRequests.map((shelterRequests, index) => (
+                {shelterRequests.map((shelterRequestss, index) => (
                     <ShelterTicket
                     key={index}
-                    ticketNumber={shelterRequests.id}
-                    name={shelterRequests.shelter.name}
-                    location={shelterRequests.shelter.address}
-                    contactInfo={shelterRequests.shelter.phone_number}
-                    donationType={shelterRequests.food_category}
+                    ticketNumber={shelterRequestss.id}
+                    name={shelterRequestss.shelter.name}
+                    location={shelterRequestss.shelter.address}
+                    contactInfo={shelterRequestss.shelter.phone_number}
+                    donationType={shelterRequestss.food_category}
+                    quantityRequested={shelterRequestss.quantity_requested}
                 />
                 ))}
             </div>

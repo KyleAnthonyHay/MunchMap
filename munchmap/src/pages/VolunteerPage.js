@@ -47,9 +47,9 @@ const VolunteerPage = () => {
       {shelterRequests.map((shelterRequest) => (
         <li key={shelterRequest.id}>
           <h1>{shelterRequest.shelter.name}</h1>
-          <h2>{shelterRequest.shelter.location}</h2> 
+          <h2>{shelterRequest.shelter.address}</h2> 
           <h3>{shelterRequest.food_category}</h3>
-          <h4>{shelterRequest.quantity}</h4>
+          <h4>{shelterRequest.quantity_requested}</h4>
         </li>
       )
       )}
