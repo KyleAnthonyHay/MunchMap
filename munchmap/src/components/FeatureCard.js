@@ -18,7 +18,7 @@ const FeatureCard = () => {
                                 <Typography gutterBottom variant="h5" component="h2">
                                 A Sustainable Food Redistribution Platform
                                 </Typography>
-                                <img src={TicketImage} className="card-img" alt="Upload Tickets" style={{ width: '75%' }}/>
+                                <img src={TicketImage} className="card-img" alt="Upload Tickets" style={{ width: '72.5%' }}/>
                                 <Typography>
                                 A revolutionary app that streamlines the process of food donation and redistribution, addressing both environmental and social concerns
                                 </Typography>
@@ -30,11 +30,11 @@ const FeatureCard = () => {
                         <Card>
                             <CardContent className="card-content">
                                 <Typography gutterBottom variant="h5" component="h2">
-                                Our ticketing system ensures transparent and organized process management
+                                Organized and transparent process handling
                                 </Typography>
-                                <img src={ServerImage} className="card-img" alt="Upload Tickets" style={{ width: '100%', padding: '0.5px' }}/>
+                                <img src={ServerImage} className="card-img" alt="Upload Tickets" style={{ width: '100%', padding: '0.7px' }}/>
                                 <Typography>
-                                We provide an intuitive interface for easy engagement, encouraging active participation in the donation workflow
+                                The well-designed ticketing system fosters donor-recipient engagement through a user-friendly interface, encouraging participation in the donation workflow
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -44,11 +44,11 @@ const FeatureCard = () => {
                         <Card>
                             <CardContent className="card-content">
                                 <Typography gutterBottom variant="h5" component="h2">
-                                MunchMap minimizes food waste while fostering community involvement
+                                Minimizes food waste, strengthens community
                                 </Typography>
                                 <img src={UploadImage} className="card-img" alt="Upload Tickets" style={{ width: '52%', padding: '18px' }}/>
                                 <Typography>
-                                Through technology and strategic partnerships, we aim for positive social and environmental impact
+                                By leveraging technology and strategic partnerships, we can transform a critical problem into an opportunity for positive social and environmental impact
                                 </Typography>
                             </CardContent>
                         </Card>
