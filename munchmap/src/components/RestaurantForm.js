@@ -10,6 +10,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import SignOutButton from '../components/SignOutButton';
 import Typography from '@mui/material/Typography';
+import { Box, Grid } from '@mui/material';
 
 function LandingPage() {
     const [ticketData, setTicketData] = useState({
@@ -85,10 +86,14 @@ function LandingPage() {
 
     const navigate = useNavigate();
 
+    function handleSignOut() {
+        navigate('/');
+        console.log('Sign Out clicked');
+    }
+
     return (
         <div>
         <SignOutButton />
-        
         <div className="landing-page">
             <Dialog
                 open={openDialog}
@@ -111,12 +116,17 @@ function LandingPage() {
                     </Button>
                 </DialogActions>
             </Dialog>
-            <div className="container">
-            <Typography variant="h2" component="h2" style={{ fontSize: '35px', paddingBottom: '20px' }}>
-            Enter Donation Information
-            </Typography>
-            </div>
+            {/*<div className="container">
+                <button className="sign-out-button" onClick={handleSignOut}>
+                    Sign Out
+                </button>
+            </div>*/}
             <div>
+            <Grid container justifyContent="center" alignItems="center" spacing={2} style={{ minHeight: '100vh', width: '100%' }}>
+    <Grid item xs={12} md={6}>
+        <Typography variant="h2" component="h2" style={{ fontSize: '40px', padding: '20px', textAlign: 'center', whiteSpace: 'nowrap' }}>
+            Enter Donation Information
+        </Typography>
                 <form onSubmit={createTicket} className="donation-form">
                     <div className="form-group">
                         <label>Type:</label>
@@ -147,8 +157,10 @@ function LandingPage() {
                     </div>
                     <button type="submit" className="submit-button">Submit</button>
                 </form>
+                </Grid>
+                </Grid>
             </div>
-        </div>
+            </div>
         </div>
     );
 }
