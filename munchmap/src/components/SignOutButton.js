@@ -21,17 +21,44 @@ const SignOutButton = () => {
     color: '#FFFFFF',
     transition: 'background-color 0.3s ease',
 };
+
+const buttonStyleLogin = {
+  borderColor: '#6273D9',
+  color: '#6273D9',
+  transition: 'background-color 0.3s ease',
+};
+
 const velvetColor = '#6273D9';
+const lightVelvetColor = 'A8A2E1'; 
 const darkerVelvetColor = '#5F65D9';
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '15px' }}>
-        <Button variant="outlined" onClick={handleBackButton} style={{ marginRight: 'auto' }}>
+        {/*<Button variant="outlined" onClick={handleBackButton} style={{ marginRight: 'auto' }}>
           Back
-        </Button>
-        <Button variant="contained" onClick={handleSignOut}>
-          Sign Out
-        </Button>
+        </Button>*/}
+        <Button style={{ marginLeft: 'auto' }}
+            variant="outlined"
+            sx={{
+            ...buttonStyleLogin,
+            borderColor: velvetColor,
+            '&:hover': { backgroundColor: lightVelvetColor, borderColor: velvetColor },
+            }}
+            onClick={handleBackButton}
+          >
+          Back
+          </Button>
+        <Button variant="contained"
+      sx={{
+        ...buttonStyle,
+        backgroundColor: velvetColor,
+        my: 1,
+        mx: 1.5,
+        '&:hover': { backgroundColor: darkerVelvetColor },
+    }}
+      onClick={handleSignOut}>
+        Sign Out
+      </Button>
       </div>
     </>
   );
