@@ -8,7 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button';
+import { Button, Typography } from '@mui/material';
 
 
 const API_URL = 'http://localhost:8000/api/login/';
@@ -95,109 +95,37 @@ function Login() {
       })
   }
   
-  // handle volunteer via axios post
   function handleVolunteerLogin() {
-    const credentials = {
-      username,
-      password
-    };
-    
-    return axios.post(API_URL, credentials)
-      .then(response => {
-        if (response.status === 200 && response.data.token) {
-          localStorage.setItem('token', response.data.token);
-          navigate('/volunteer')
-        }
-        return response.data;
-      })
-      .catch(error => {
-        // Clear the token and fields
-        localStorage.removeItem('token');
-        setUsername('');
-        setPassword('');
-
-        if (error.response && error.response.status === 401 || error.response.status === 403) {
-          console.log('Unauthorized, logging out ...');
-          localStorage.removeItem('token');
-          setOpenDialog(true);
-        }
-        else {
-          console.log('An error occurred:', error.response);
-          setOpenDialog(true);
-        }
-      }
-      )
+    // check if Email and Password field is filled
+    if (username === '' || password === '') {
+      setOpenDialog(true);
+    } else {
+      navigate('/volunteer')
+    }
   }
-
-
-// handle specialist via axios post
   function handleSpecialistLogin() {
-    const credentials = {
-      username,
-      password
-    };
-
-
-    return axios.post(API_URL, credentials)
-      .then(response => {
-        if (response.status === 200 && response.data.token) {
-          localStorage.setItem('token', response.data.token);
-          navigate('/specialist')
-        }
-        return response.data;
-      }
-      )
-      .catch(error => {
-        // Clear the token and fields
-        localStorage.removeItem('token');
-        setUsername('');
-        setPassword('');
-    
-        if (error.response && error.response.status === 401 || error.response.status === 403) {
-          console.log('Unauthorized, logging out ...');
-          localStorage.removeItem('token');
-          setOpenDialog(true);
-        }
-        else {
-          console.log('An error occurred:', error.response);
-          setOpenDialog(true);
-        }
-      }
-      )
+    if (username === '' || password === '') {
+      setOpenDialog(true);
+    } else {
+    navigate('/specialist')
+    }
   }
-
-  // handle shelter via axios post
   function handleShelterLogin() {
-    const credentials = {
-      username,
-      password
-    };
-
-    return axios.post(API_URL, credentials)
-      .then(response => {
-        if (response.status === 200 && response.data.token) {
-          localStorage.setItem('token', response.data.token);
-          navigate('/shelter')
-        }
-        return response.data;
-      })
-      .catch(error => {
-        // Clear the token and fields 
-        localStorage.removeItem('token');
-        setUsername('');
-        setPassword('');
-
-        if (error.response && error.response.status === 401 || error.response.status === 403) {
-          console.log('Unauthorized, logging out ...');
-          localStorage.removeItem('token');
-          setOpenDialog(true);
-        }
-        else {
-          console.log('An error occurred:', error.response);
-          setOpenDialog(true);
-        }
-      }) 
+    if (username === '' || password === '') {
+      setOpenDialog(true);
+    }else {
+    navigate('/shelter')
+    }
   }
+
+  //buttons style
+  const buttonStyle = {
+    color: '#FFFFFF',
+    transition: 'background-color 0.3s ease',
+};
+
+  const velvetColor = '#6273D9'; 
+  const darkerVelvetColor = '#5F65D9'; 
 
   return (
     <div className="login-container">
@@ -221,7 +149,9 @@ function Login() {
       </Dialog>
       <div className="login-form">
         <div className="toggle-buttons">
-          <button className="title">Login</button>
+        <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '24px' }}>
+          Log in
+        </Typography>
         </div>
         <div className="input-group">
           <input type="username" placeholder="Email" value={username} onChange={handleUsernameChange} />
@@ -233,11 +163,76 @@ function Login() {
           </label>
           <a href="#">Forgot Password?</a>
         </div>
-        <button className="login-button" onClick={handleLogin}>Log in as Admin</button>
-        <button className="login-button" onClick={handleUserLogin}>Log in as Restaraunt</button>
-        <button className="login-button" onClick={handleSpecialistLogin}>Log in as Specialist</button>
-        <button className="login-button" onClick={handleVolunteerLogin}>Log in as Volunteer</button>
-        <button className="login-button" onClick={handleShelterLogin}>Log in as Shelter</button>
+        <Button
+          className="login-button"
+          variant="contained"
+          sx={{
+            ...buttonStyle,
+            backgroundColor: velvetColor,
+            my: 1,
+            mx: 1.5,
+            '&:hover': { backgroundColor: darkerVelvetColor },
+          }}
+          onClick={handleLogin}
+        >
+          Log in as Admin
+        </Button>
+        <Button
+          className="login-button"
+          variant="contained"
+          sx={{
+            ...buttonStyle,
+            backgroundColor: velvetColor,
+            my: 1,
+            mx: 1.5,
+            '&:hover': { backgroundColor: darkerVelvetColor },
+          }}
+          onClick={handleUserLogin}
+        >
+          Log in as Restaraunt
+        </Button>
+        <Button
+          className="login-button"
+          variant="contained"
+          sx={{
+            ...buttonStyle,
+            backgroundColor: velvetColor,
+            my: 1,
+            mx: 1.5,
+            '&:hover': { backgroundColor: darkerVelvetColor },
+          }}
+          onClick={handleSpecialistLogin}
+        >
+          Log in as Specialist
+        </Button>
+        <Button
+          className="login-button"
+          variant="contained"
+          sx={{
+            ...buttonStyle,
+            backgroundColor: velvetColor,
+            my: 1,
+            mx: 1.5,
+            '&:hover': { backgroundColor: darkerVelvetColor },
+          }}
+          onClick={handleVolunteerLogin}
+        >
+          Log in as Volunteer
+        </Button>
+        <Button
+          className="login-button"
+          variant="contained"
+          sx={{
+            ...buttonStyle,
+            backgroundColor: velvetColor,
+            my: 1,
+            mx: 1.5,
+            '&:hover': { backgroundColor: darkerVelvetColor },
+          }}
+          onClick={handleShelterLogin}
+        >
+          Log in as Shelter
+        </Button>
         <div className="register-link">
           Don’t have an account? <Link to="/signup">Sign Up</Link>
         </div>
