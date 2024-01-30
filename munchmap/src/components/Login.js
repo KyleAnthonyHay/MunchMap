@@ -58,7 +58,7 @@ function Login() {
           setOpenDialog(true);
         }
         else {
-          console.log('An error occurred:', error.response);
+          localStorage.removeItem('token'); 
           setOpenDialog(true);
         }
       })
@@ -89,8 +89,8 @@ function Login() {
           localStorage.removeItem('token');
           setOpenDialog(true);
         }
-        else {
-          console.log('An error occurred:', error.response);
+        else { 
+          localStorage.removeItem('token');
           setOpenDialog(true);
         }
       })
@@ -122,8 +122,8 @@ function Login() {
           localStorage.removeItem('token');
           setOpenDialog(true);
         }
-        else {
-          console.log('An error occurred:', error.response);
+        else { 
+          localStorage.removeItem('token');
           setOpenDialog(true);
         }
       }
@@ -160,7 +160,7 @@ function Login() {
           setOpenDialog(true);
         }
         else {
-          console.log('An error occurred:', error.response);
+          localStorage.removeItem('token');
           setOpenDialog(true);
         }
       }
@@ -194,7 +194,7 @@ function Login() {
           setOpenDialog(true);
         }
         else {
-          console.log('An error occurred:', error.response);
+          localStorage.removeItem('token');
           setOpenDialog(true);
         }
       }) 
@@ -211,7 +211,7 @@ function Login() {
         <DialogTitle id="alert-dialog-title">{"Login Required"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            An error occurred. Please try logging in again
+            An error occurred. Please try again with the correct credentials.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

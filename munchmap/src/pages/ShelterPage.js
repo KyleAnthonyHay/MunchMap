@@ -7,13 +7,18 @@ import SignOutButton from '../components/SignOutButton'
 import Typography from '@mui/material/Typography';
 import { Box, Grid } from '@mui/material';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 // styles
 import '../components/RestaurantForm.css';
+import { Dialog } from '@mui/material';
+
 
 const ShelterPage = () => {
   const [shelter, setShelter] = useState(null);
   const [quantity_requested, setQuantity] = useState(10);
   const [food_category, setFoodCategory] = useState(0);
+  const [openDialog, setOpenDialog] = useState(false);
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -28,7 +33,9 @@ const ShelterPage = () => {
         console.log('Shelter:', response.data);
         setShelter(response.data);
       } catch (error) {
-        console.error('Error fetching shelter', error);
+        setOpenDialog(true);
+        navigate('/login');
+        localStorage.removeItem('token');
       }
     };
     fetchShelter();
@@ -37,6 +44,11 @@ const ShelterPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    // Make sure fields are not empty
+    if (!quantity_requested || !food_category) {
+      setOpenDialog(true);
+      return;
+    }
     const token = localStorage.getItem('token');
     const newRequest = {
       shelter: shelter.id, 
@@ -60,6 +72,16 @@ const ShelterPage = () => {
   
   return (
     <div>
+      <Dialog
+        open={openDialog}
+        onClose={() => setOpenDialog(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <Typography variant="h6" component="h6" style={{ padding: '20px', textAlign: 'center' }}>
+         An error occured, please log in again 
+        </Typography>
+      </Dialog>
       <SignOutButton/>
       <Grid container justifyContent="center" alignItems="center">
         <Grid item xs={12} md={6}>
