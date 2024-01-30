@@ -17,6 +17,12 @@ const SignOutButton = () => {
     navigate('/login');
   };
 
+  const buttonStyle = {
+    color: '#FFFFFF',
+    transition: 'background-color 0.3s ease',
+};
+const velvetColor = '#6273D9';
+const darkerVelvetColor = '#5F65D9';
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '15px' }}>
