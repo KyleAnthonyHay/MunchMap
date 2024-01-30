@@ -6,9 +6,37 @@ import './SpecialistPage.css'
 import Typography from '@mui/material/Typography';
 import { Box, Grid } from '@mui/material';
 import SignOutButton from '../components/SignOutButton';
+import { useNavigate } from 'react-router-dom';
+
 
 const SpecialistPage = () => {
   const [tickets, setTickets] = useState([]);
+  const [specialist, setSpecialist] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
+  const navigate = useNavigate();
+
+  // Fetch the specialist to display their page otherwise redirect to login
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const fetchSpecialist = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/inspectors/get_my_food_inspector/', {
+          headers: {
+            Authorization: `Token ${token}`
+          }
+        });
+        setSpecialist(response.data);
+      } catch (error) {
+        localStorage.removeItem('token');
+        setOpenDialog(true);
+        navigate('/login');
+        
+      }
+    };
+    fetchSpecialist();
+  }
+  , []);
+
 
   useEffect(() => {
     const token = localStorage.getItem('token');

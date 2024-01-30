@@ -60,7 +60,7 @@ const ShelterForm = () => {
 
   async function handleSignUp() { //for restarants
     // If any of the fields are empty, return early
-    if (!username || !password || !name || !address || !concept || !phone_number || !email) {
+    if (!username || !password || !name || !address || !phone_number || !email) {
       setOpenDialog(true);
       return;
     }

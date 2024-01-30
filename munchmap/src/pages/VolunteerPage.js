@@ -6,13 +6,37 @@ import Typography from '@mui/material/Typography';
 import { Box, Grid } from '@mui/material';
 import SignOutButton from '../components/SignOutButton';
 import { VolunteerTicket } from '../components/VolunteerTicket';
-
-
+import { useNavigate } from 'react-router-dom';
 
 
 const VolunteerPage = () => {
   const [shelterRequests, setShelterRequests] = useState([]);
   const [chosenShelterRequest, setChosenShelterRequest] = useState(null);
+  const [volunteer, setVolunteer] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
+  const navigate = useNavigate();
+
+   // Fetch the specialist to display their page otherwise redirect to login
+   useEffect(() => {
+    const token = localStorage.getItem('token');
+    const fetchSpecialist = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/volunteers/get_my_volunteer/', {
+          headers: {
+            Authorization: `Token ${token}`
+          }
+        });
+        setVolunteer(response.data);
+      } catch (error) {
+        localStorage.removeItem('token');
+        setOpenDialog(true);
+        navigate('/login');
+        
+      }
+    };
+    fetchSpecialist();
+  }
+  , []);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
