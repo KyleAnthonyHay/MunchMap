@@ -47,6 +47,11 @@ function LandingPage() {
 
     function createTicket(event) {
         event.preventDefault();
+        // Make sure fields are not empty 
+        if (!ticketData.food_category || !ticketData.expiration_date) {
+            setOpenDialog(true);
+            return;
+        }
         const token = localStorage.getItem('token');
 
         axios.post('http://localhost:8000/api/tickets/', {
@@ -105,7 +110,7 @@ function LandingPage() {
                 <DialogTitle id="alert-dialog-title">{"Login Required"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        An error occurred. Please log in again.
+                       A problem occurred, please try again.  
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

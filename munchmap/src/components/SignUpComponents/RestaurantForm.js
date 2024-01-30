@@ -59,6 +59,11 @@ const RestaurantForm = () => {
   };
 
   async function handleSignUp() { //for restarants
+    // If any of the fields are empty, return early
+    if (!username || !password || !name || !address || !concept || !phone_number || !email) {
+      setOpenDialog(true);
+      return;
+    }
     const credentials = {
       user: {
         username,
@@ -80,6 +85,9 @@ const RestaurantForm = () => {
     } catch (error) {
       console.log("An error occurred:", error.response);
       setOpenDialog(true);
+      // Clear the fields
+      setUsername('');
+      setPassword('');
     }
   
   }
@@ -94,7 +102,7 @@ const RestaurantForm = () => {
         <DialogTitle id="alert-dialog-title">{"Login Required"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            An error occurred. Please log in again.
+          An error occurred. Please try signing up with different credentials. 
           </DialogContentText>
         </DialogContent>
         <DialogActions> 

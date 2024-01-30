@@ -59,8 +59,13 @@ const RestaurantForm = () => {
   };
 
   async function handleSignUp() { //for restarants
-    
-  
+    // If any of the fields are empty, return early
+    if (!username || !firstName || !lastName || !address || !concept || !phone_number || !email) {
+      setOpenDialog(true);
+      return;
+    }
+
+     
   }
 
   return (
