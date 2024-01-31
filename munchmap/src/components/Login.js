@@ -9,13 +9,14 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
-import BackButton from './BackButton';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import InputBase from '@mui/material/InputBase';
+import SignUpButton from './SignUpButton';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const API_URL = 'http://localhost:8000/api/login/';
 
@@ -183,7 +184,18 @@ function Login() {
     }
   }
 
+  const theme = createTheme({
+    palette: {
+      ochre: {
+        main: '#6273D9',
+        light: '#5F65D9',
+        contrastText: '#ffffff',
+      },
+    },
+  });
+
   return (
+    <div> <SignUpButton />
     <div className="login-container">
       <Dialog
         open={openDialog}
@@ -203,9 +215,8 @@ function Login() {
           </Button>
         </DialogActions>
       </Dialog>
-
-      <div className='page-containter'>
-        <div className='back-button'><BackButton /></div>
+      <div className='page-container'>
+        {/*<div className='back-button'><BackButton /></div>*/}
         <div className="login-form">
           <div className="toggle-buttons">
           <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '24px' }}>
@@ -223,25 +234,33 @@ function Login() {
             <a href="#">Forgot Password?</a>
           </div>
           <BootstrapInput
-            
             value={selectedRole}
             onChange={handleRoleChange}
             displayEmpty
             className="role-select"
           >
             <MenuItem value="" disabled>Select Role</MenuItem>
-            <MenuItem value="admin">Admin</MenuItem>
             <MenuItem value="restaurant">Restaurant</MenuItem>
             <MenuItem value="specialist">Specialist</MenuItem>
-            <MenuItem value="volunteer">Volunteer</MenuItem>
             <MenuItem value="shelter">Shelter</MenuItem>
+            <MenuItem value="admin">Admin</MenuItem>
+            <MenuItem value="volunteer">Volunteer</MenuItem>
           </BootstrapInput>
-          <button className="login-button" onClick={handleLogin}>Log in</button>
+          <ThemeProvider theme={theme}>
+          <Button
+          className="login-button"
+          style={{ backgroundColor: theme.palette.ochre.main, color: theme.palette.ochre.contrastText }}
+          onClick={handleLogin}
+          >
+            Log in
+        </Button>
+        </ThemeProvider>
           <div className="register-link">
-            Don’t have an account? <Link to="/signup">Sign Up</Link>
+            Don't have an account? <Link to="/signup">Sign Up</Link>
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }
