@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import SignOutButton from '../components/SignOutButton';
 
 import Button from '@mui/material/Button';
+import LoadingScreen from '../utils/LoadingScreen';
 
 const AdminView = () => {
     const [tickets, setTickets] = useState([]);
@@ -29,7 +30,6 @@ const AdminView = () => {
             console.log(err)
             setError(err);
         } finally {
-            setIsLoading(false);
         }
     };
 
@@ -46,7 +46,6 @@ const AdminView = () => {
             console.log(err)
             setError(err);
         } finally {
-            setIsLoading(false);
         }
     };
 
@@ -62,7 +61,6 @@ const AdminView = () => {
             console.log(err)
             setError(err);
         } finally {
-            setIsLoading(false);
         }
     }
 
@@ -92,6 +90,7 @@ const AdminView = () => {
 
     const matchTicketsWithShelterRequests = async () => {
         const token = localStorage.getItem('token');
+        setIsLoading(true)
         try {
             const response = await axios.post('http://localhost:8000/api/tickets/match_tickets/',
                 {
@@ -104,19 +103,22 @@ const AdminView = () => {
             console.log(err)
             setError(err);
         } finally {
-            setIsLoading(false);
+            setTimeout(() => { 
+                setIsLoading(false);
+            }
+            , 3000);
         }
     };
 
     const testConsoleLog = () => {
         console.log('test');
     }
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <LoadingScreen />;
     if (error) return <div>Error: {error.message}</div>;
 
     
     return (
-        <div>
+        <div>  
             <SignOutButton />
         <div className="admin-view">
             {/* ******************************** Restaurant Tickets ******************************** */}
