@@ -105,7 +105,7 @@ const ShelterPage = () => {
                   Food Category:
                   <input
                     type="number"
-                    value={food_category}
+                    value={food_category ? food_category == null : 0}
                     onChange={(event) => setFoodCategory(event.target.value)}
                     className="form-control"
                   />
