@@ -131,7 +131,7 @@ const AdminView = () => {
                         name={ticket.restaurant.name}
                         location={ticket.restaurant.address}
                         contactInfo={ticket.restaurant.phone_number}
-                        donationType={ticket.food_category}
+                        donationType={ticket.food_category_display}
                         expirationDate={ticket.expiration_date}
                         inspected={ticket.checked}
                         quantity={ticket.quantity}
@@ -153,7 +153,7 @@ const AdminView = () => {
                     name={shelterRequestss.shelter.name}
                     location={shelterRequestss.shelter.address}
                     contactInfo={shelterRequestss.shelter.phone_number}
-                    donationType={shelterRequestss.food_category}
+                    donationType={shelterRequestss.food_category_display}
                     quantityRequested={shelterRequestss.quantity_requested}
                 />
                 ))}
