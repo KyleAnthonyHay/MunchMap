@@ -15,47 +15,61 @@ const AdminView = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
+
+    const fetchTickets = async () => {
         const token = localStorage.getItem('token');
-        const fetchTickets = async () => {
-            try {
-                // Replace with the actual API URL and authentication method
-                const response = await axios.get('http://localhost:8000/api/tickets/list_checked_tickets/', 
+        try {
+            // Replace with the actual API URL and authentication method
+            const response = await axios.get('http://localhost:8000/api/tickets/list_checked_tickets/',
                 {
                     headers: { Authorization: `Token ${token}` }
                 });
-                setTickets(response.data);
-            } catch (err) {
-                console.log(err)
-                setError(err);
-            } finally {
-                setIsLoading(false);
-            }
-        };
+            setTickets(response.data);
+        } catch (err) {
+            console.log(err)
+            setError(err);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
-        fetchTickets();
-    }, []);
+    const fetchExpiredTickets = async () => {
+        const token = localStorage.getItem('token');
+        try {
+            // Replace with the actual API URL and authentication method
+            const response = await axios.get('http://localhost:8000/api/tickets/list_expired_tickets/',
+                {
+                    headers: { Authorization: `Token ${token}` }
+                });
+            setExpiredTickets(response.data);
+        } catch (err) {
+            console.log(err)
+            setError(err);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
+    const getNotDelieveredShelterRequests = async () => {
+        const token = localStorage.getItem('token');
+        try {
+            const response = await axios.get('http://localhost:8000/api/shelter-requests/list_not_fulfilled_requests/',
+                {
+                    headers: { Authorization: `Token ${token}` }
+                });
+            setShelterRequests(response.data);
+        } catch (err) {
+            console.log(err)
+            setError(err);
+        } finally {
+            setIsLoading(false);
+        }
+    }
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        const fetchExpiredTickets = async () => {
-            try {
-                // Replace with the actual API URL and authentication method
-                const response = await axios.get('http://localhost:8000/api/tickets/list_expired_tickets/',
-                    {
-                        headers: { Authorization: `Token ${token}` }
-                    });
-                setExpiredTickets(null);
-            } catch (err) {
-                console.log(err)
-
-            } finally {
-
-            }
-        };
-
+        fetchTickets();
         fetchExpiredTickets();
+        getNotDelieveredShelterRequests();
     }, []);
 
 
@@ -76,26 +90,6 @@ const AdminView = () => {
         }
     };
 
-    useEffect(() => {
-        const getNotDelieveredShelterRequests = async () => {
-            const token = localStorage.getItem('token');
-            try {
-                const response = await axios.get('http://localhost:8000/api/shelter-requests/list_not_fulfilled_requests/',
-                    {
-                        headers: { Authorization: `Token ${token}` }
-                    });
-                setShelterRequests(response.data);
-            } catch (err) {
-                console.log(err)
-                setError(err);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        getNotDelieveredShelterRequests();
-    }, []);
-
-
     const matchTicketsWithShelterRequests = async () => {
         const token = localStorage.getItem('token');
         try {
@@ -104,6 +98,8 @@ const AdminView = () => {
                     headers: { Authorization: `Token ${token}` }
                 });
             console.log(response);
+            fetchTickets();
+            getNotDelieveredShelterRequests();
         } catch (err) {
             console.log(err)
             setError(err);
