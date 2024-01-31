@@ -10,19 +10,36 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import BackButton from './BackButton';
-
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import InputBase from '@mui/material/InputBase';
 
 const API_URL = 'http://localhost:8000/api/login/';
+
+const BootstrapInput = ({ label, ...props }) => {
+  return (
+    <FormControl>
+      <InputLabel shrink>{label}</InputLabel>
+      <Select
+        label={label}
+        input={<InputBase />}
+        {...props}
+      />
+    </FormControl>
+  );
+};
 
 function Login() {
   const [openDialog, setOpenDialog] = useState(false);
   const navigate = useNavigate();
 
-  // Separate state hooks for username and password
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [selectedRole, setSelectedRole] = useState('');
 
-  // Update state when the input changes
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
@@ -31,8 +48,43 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  // Updated handleLogin function
-  function handleLogin() {
+  const handleRoleChange = (event) => {
+    setSelectedRole(event.target.value);
+  };
+
+  const handleLogin = () => {
+    switch (selectedRole) {
+      case 'admin':
+        handleLoginForRole(handleAdminLogin, '/admin');
+        break;
+      case 'restaurant':
+        handleLoginForRole(handleUserLogin, '/restaurantform');
+        break;
+      case 'specialist':
+        handleLoginForRole(handleSpecialistLogin, '/specialist');
+        break;
+      case 'volunteer':
+        handleLoginForRole(handleVolunteerLogin, '/volunteer');
+        break;
+      case 'shelter':
+        handleLoginForRole(handleShelterLogin, '/shelter');
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleLoginForRole = (loginFunction, redirectPath) => {
+    loginFunction()
+      .then(response => {
+        // Additional handling if needed
+      })
+      .catch(error => {
+        console.error('Login failed:', error);
+      });
+  };
+
+  function handleAdminLogin() {
     const credentials = {
       username,
       password
@@ -40,30 +92,15 @@ function Login() {
 
     return axios.post(API_URL, credentials)
       .then(response => {
-        if (response.status == 200 && response.data.token) {
+        if (response.status === 200 && response.data.token) {
           localStorage.setItem('token', response.data.token);
           navigate('/admin');
         }
         return response.data;
       })
-      .catch(error => {
-        // Clear the token and fields 
-        localStorage.removeItem('token');
-        setUsername('');
-        setPassword('');
-
-        if (error.response && error.status === 401 || error.status === 403) {
-          console.log('Unauthorized, logging out ...');
-          localStorage.removeItem('token');
-          setOpenDialog(true);
-        }
-        else {
-          localStorage.removeItem('token'); 
-          setOpenDialog(true);
-        }
-      })
+      .catch(handleLoginError);
   }
-  // Updated handleUserLogin function
+
   function handleUserLogin() {
     const credentials = {
       username,
@@ -74,100 +111,47 @@ function Login() {
       .then(response => {
         if (response.status === 200 && response.data.token) {
           localStorage.setItem('token', response.data.token);
-          navigate('/restaurantform')
+          navigate('/restaurantform');
         }
         return response.data;
       })
-      .catch(error => {
-        // Clear the token and fields 
-        localStorage.removeItem('token');
-        setUsername('');
-        setPassword('');
-
-        if (error && error.status === 401 || error.status === 403) {
-          console.log('Unauthorized, logging out ...');
-          localStorage.removeItem('token');
-          setOpenDialog(true);
-        }
-        else { 
-          localStorage.removeItem('token');
-          setOpenDialog(true);
-        }
-      })
-  }
-  
-  // handle volunteer via axios post
-  function handleVolunteerLogin() {
-    const credentials = {
-      username,
-      password
-    };
-    
-    return axios.post(API_URL, credentials)
-      .then(response => {
-        if (response.status === 200 && response.data.token) {
-          localStorage.setItem('token', response.data.token);
-          navigate('/volunteer')
-        }
-        return response.data;
-      })
-      .catch(error => {
-        // Clear the token and fields
-        localStorage.removeItem('token');
-        setUsername('');
-        setPassword('');
-
-        if (error.response && error.status === 401 || error.status === 403) {
-          console.log('Unauthorized, logging out ...');
-          localStorage.removeItem('token');
-          setOpenDialog(true);
-        }
-        else { 
-          localStorage.removeItem('token');
-          setOpenDialog(true);
-        }
-      }
-      )
+      .catch(handleLoginError);
   }
 
-
-// handle specialist via axios post
   function handleSpecialistLogin() {
     const credentials = {
       username,
       password
     };
 
+    return axios.post(API_URL, credentials)
+      .then(response => {
+        if (response.status === 200 && response.data.token) {
+          localStorage.setItem('token', response.data.token);
+          navigate('/specialist');
+        }
+        return response.data;
+      })
+      .catch(handleLoginError);
+  }
+
+  function handleVolunteerLogin() {
+    const credentials = {
+      username,
+      password
+    };
 
     return axios.post(API_URL, credentials)
       .then(response => {
         if (response.status === 200 && response.data.token) {
           localStorage.setItem('token', response.data.token);
-          navigate('/specialist')
+          navigate('/volunteer');
         }
         return response.data;
-      }
-      )
-      .catch(error => {
-        // Clear the token and fields
-        localStorage.removeItem('token');
-        setUsername('');
-        setPassword('');
-    
-        if (error.response && error.status === 401 || error.status === 403) {
-          console.log('Unauthorized, logging out ...');
-          localStorage.removeItem('token');
-          setOpenDialog(true);
-        }
-        else {
-          localStorage.removeItem('token');
-          setOpenDialog(true);
-        }
-      }
-      )
+      })
+      .catch(handleLoginError);
   }
 
-  // handle shelter via axios post
   function handleShelterLogin() {
     const credentials = {
       username,
@@ -178,26 +162,25 @@ function Login() {
       .then(response => {
         if (response.status === 200 && response.data.token) {
           localStorage.setItem('token', response.data.token);
-          navigate('/shelter')
+          navigate('/shelter');
         }
         return response.data;
       })
-      .catch(error => {
-        // Clear the token and fields 
-        localStorage.removeItem('token');
-        setUsername('');
-        setPassword('');
+      .catch(handleLoginError);
+  }
 
-        if (error.response && error.status === 401 || error.status === 403) {
-          console.log('Unauthorized, logging out ...');
-          localStorage.removeItem('token');
-          setOpenDialog(true);
-        }
-        else {
-          localStorage.removeItem('token');
-          setOpenDialog(true);
-        }
-      }) 
+  function handleLoginError(error) {
+    localStorage.removeItem('token');
+    setUsername('');
+    setPassword('');
+
+    if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+      console.log('Unauthorized, logging out ...');
+      setOpenDialog(true);
+    } else {
+      console.log('An error occurred during login:', error);
+      setOpenDialog(true);
+    }
   }
 
   return (
@@ -220,12 +203,14 @@ function Login() {
           </Button>
         </DialogActions>
       </Dialog>
-      
+
       <div className='page-containter'>
-        <div className='back-button'><BackButton/></div>
+        <div className='back-button'><BackButton /></div>
         <div className="login-form">
           <div className="toggle-buttons">
-            <button className="title">Login</button>
+          <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '24px' }}>
+            Log in
+          </Typography>
           </div>
           <div className="input-group">
             <input type="username" placeholder="Email" value={username} onChange={handleUsernameChange} />
@@ -237,11 +222,21 @@ function Login() {
             </label>
             <a href="#">Forgot Password?</a>
           </div>
-          <button className="login-button" onClick={handleLogin}>Log in as Admin</button>
-          <button className="login-button" onClick={handleUserLogin}>Log in as Restaraunt</button>
-          <button className="login-button" onClick={handleSpecialistLogin}>Log in as Specialist</button>
-          <button className="login-button" onClick={handleVolunteerLogin}>Log in as Volunteer</button>
-          <button className="login-button" onClick={handleShelterLogin}>Log in as Shelter</button>
+          <BootstrapInput
+            
+            value={selectedRole}
+            onChange={handleRoleChange}
+            displayEmpty
+            className="role-select"
+          >
+            <MenuItem value="" disabled>Select Role</MenuItem>
+            <MenuItem value="admin">Admin</MenuItem>
+            <MenuItem value="restaurant">Restaurant</MenuItem>
+            <MenuItem value="specialist">Specialist</MenuItem>
+            <MenuItem value="volunteer">Volunteer</MenuItem>
+            <MenuItem value="shelter">Shelter</MenuItem>
+          </BootstrapInput>
+          <button className="login-button" onClick={handleLogin}>Log in</button>
           <div className="register-link">
             Don’t have an account? <Link to="/signup">Sign Up</Link>
           </div>

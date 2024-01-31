@@ -122,44 +122,42 @@ function LandingPage() {
                     </Button>
                 </DialogActions>
             </Dialog>
+            <div className="container">
+                <Typography variant="h2" component="h2" style={{ fontSize: '40px', padding: '20px', textAlign: 'center', whiteSpace: 'nowrap' }}>
+                    Enter Donation Information
+                </Typography>
+            </div>
             <div>
-            <Grid container justifyContent="center" alignItems="center" spacing={2} style={{ minHeight: '100vh', width: '100%' }}>
-                <Grid item xs={12} md={6}>
-                    <Typography variant="h2" component="h2" style={{ fontSize: '40px', padding: '20px', textAlign: 'center', whiteSpace: 'nowrap' }}>
-                        Enter Donation Information
-                    </Typography>
-                            <form onSubmit={createTicket} className="donation-form">
-                                <div className="form-group">
-                                    <label>Type:</label>
-                                    <select name="food_category" onChange={handleInputChange} value={ticketData.food_category} className="form-control">
-                                        <option value="0">Can Food</option>
-                                        <option value="1">Vegetables</option>
-                                        <option value="2">Non-Perishables</option>
-                                    </select>
-                                </div>
-                                <div className="form-group">
-                                    <label>Quantity (lbs):</label>
-                                    <input
-                                        type="number"
-                                        name="quantity"
-                                        onChange={handleInputChange}
-                                        value={ticketData.quantity}
-                                        className="form-control"/>
-                                </div>
-                                <div className="form-group">
-                                    <label>Expiration Date:</label>
-                                    <input
-                                        type="date"
-                                        name="expiration_date"
-                                        onChange={handleInputChange}
-                                        value={ticketData.expiration_date}
-                                        className="form-control"
-                                    />
-                                </div>
-                                <button type="submit" className="submit-button">Submit</button>
-                            </form>
-                    </Grid>
-                </Grid>
+                <form onSubmit={createTicket} className="donation-form">
+                    <div className="form-group">
+                        <label>Type:</label>
+                        <select name="food_category" onChange={handleInputChange} value={ticketData.food_category} className="form-control">
+                            <option value="0">Can Food</option>
+                            <option value="1">Vegetables</option>
+                            <option value="2">Non-Perishables</option>
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label>Quantity (lbs):</label>
+                        <input
+                            type="number"
+                            name="quantity"
+                            onChange={handleInputChange}
+                            value={ticketData.quantity}
+                            className="form-control"/>
+                    </div>
+                    <div className="form-group">
+                        <label>Expiration Date:</label>
+                        <input
+                            type="date"
+                            name="expiration_date"
+                            onChange={handleInputChange}
+                            value={ticketData.expiration_date}
+                            className="form-control"
+                        />
+                        </div>
+                        <button type="submit" className="submit-button">Submit</button>
+                    </form>
             </div>
             </div>
         </div>

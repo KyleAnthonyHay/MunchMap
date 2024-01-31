@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    /*height: 100vh;*/
     background-color: #ffffff;
 }
 
@@ -44,12 +44,12 @@
     width: 100%;
     padding: 10px;
     border: none;
-    background-color: #007bff;
+    background-color: #6273D9;
     color: white;
     border-radius: 4px;
     cursor: pointer;
 }
 
 .submit-button:hover {
-    background-color: #0056b3;
+    background-color: #5F65D9;
 }
