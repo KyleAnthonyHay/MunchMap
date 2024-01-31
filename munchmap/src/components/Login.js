@@ -12,8 +12,25 @@ import Button from '@mui/material/Button';
 import BackButton from './BackButton';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import InputBase from '@mui/material/InputBase';
 
 const API_URL = 'http://localhost:8000/api/login/';
+
+const BootstrapInput = ({ label, ...props }) => {
+  return (
+    <FormControl>
+      <InputLabel shrink>{label}</InputLabel>
+      <Select
+        label={label}
+        input={<InputBase />}
+        {...props}
+      />
+    </FormControl>
+  );
+};
 
 function Login() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -191,7 +208,9 @@ function Login() {
         <div className='back-button'><BackButton /></div>
         <div className="login-form">
           <div className="toggle-buttons">
-            <button className="title">Login</button>
+          <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '24px' }}>
+            Log in
+          </Typography>
           </div>
           <div className="input-group">
             <input type="username" placeholder="Email" value={username} onChange={handleUsernameChange} />
@@ -203,7 +222,8 @@ function Login() {
             </label>
             <a href="#">Forgot Password?</a>
           </div>
-          <Select
+          <BootstrapInput
+            
             value={selectedRole}
             onChange={handleRoleChange}
             displayEmpty
@@ -215,7 +235,7 @@ function Login() {
             <MenuItem value="specialist">Specialist</MenuItem>
             <MenuItem value="volunteer">Volunteer</MenuItem>
             <MenuItem value="shelter">Shelter</MenuItem>
-          </Select>
+          </BootstrapInput>
           <button className="login-button" onClick={handleLogin}>Log in</button>
           <div className="register-link">
             Don’t have an account? <Link to="/signup">Sign Up</Link>
