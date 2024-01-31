@@ -13,7 +13,7 @@ const AdminView = () => {
     const [tickets, setTickets] = useState([]);
     const [expiredTickets, setExpiredTickets] = useState([]);
     const [shelterRequests, setShelterRequests] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
 
