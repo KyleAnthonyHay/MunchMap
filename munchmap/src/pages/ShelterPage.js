@@ -68,6 +68,10 @@ const ShelterPage = () => {
       console.error('Error creating ticket:', error);
     }
   }
+
+  const handleInputChange = (event) => {
+        setFoodCategory(event.target.value);
+    };
   
   
   return (
@@ -101,16 +105,13 @@ const ShelterPage = () => {
                 </label>
               </div>
               <div className="form-group">
-                <label>
-                  Food Category:
-                  <input
-                    type="number"
-                    value={food_category ? food_category == null : 0}
-                    onChange={(event) => setFoodCategory(event.target.value)}
-                    className="form-control"
-                  />
-                </label>
-              </div>
+                        <label>Type:</label>
+                        <select name="food_category" onChange={handleInputChange} value={food_category} className="form-control">
+                            <option value="0">Can Food</option>
+                            <option value="1">Vegetables</option>
+                            <option value="2">Non-Perishables</option>
+                        </select>
+                    </div>
                 <Button type="submit" variant="contained" color="primary" onClick={handleSubmit}>
                   Create Ticket
                 </Button>

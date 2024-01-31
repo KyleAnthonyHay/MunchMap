@@ -10,6 +10,7 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import Button from '@mui/material/Button';
 
 import axios from 'axios';
@@ -61,7 +62,7 @@ const RestarauntTicket = ({ ticketNumber, name, location, contactInfo, donationT
             {inspected ? <CheckCircleOutlineIcon sx={{ mr: 0.9 }} /> : <ErrorOutlineIcon sx={{ mr: 0.9 }} />} Inspected: {inspected ? 'Yes' : 'No'}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-          <VolunteerActivismIcon color="action" sx={{ mr: 0.6 }} /> Quantity: {quantity}
+          <ProductionQuantityLimitsIcon color="action" sx={{ mr: 0.6 }} /> Quantity: {quantity}
           </Typography>
           {/* <Button variant="outlined">Match to Shelter</Button> */}
         </CardContent>
