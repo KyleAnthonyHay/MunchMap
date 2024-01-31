@@ -52,7 +52,7 @@ function Login() {
         setUsername('');
         setPassword('');
 
-        if (error.response && error.response.status === 401 || error.response.status === 403) {
+        if (error.response && error.status === 401 || error.status === 403) {
           console.log('Unauthorized, logging out ...');
           localStorage.removeItem('token');
           setOpenDialog(true);
@@ -84,7 +84,7 @@ function Login() {
         setUsername('');
         setPassword('');
 
-        if (error.response && error.response.status === 401 || error.response.status === 403) {
+        if (error && error.status === 401 || error.status === 403) {
           console.log('Unauthorized, logging out ...');
           localStorage.removeItem('token');
           setOpenDialog(true);
@@ -117,7 +117,7 @@ function Login() {
         setUsername('');
         setPassword('');
 
-        if (error.response && error.response.status === 401 || error.response.status === 403) {
+        if (error.response && error.status === 401 || error.status === 403) {
           console.log('Unauthorized, logging out ...');
           localStorage.removeItem('token');
           setOpenDialog(true);
@@ -154,7 +154,7 @@ function Login() {
         setUsername('');
         setPassword('');
     
-        if (error.response && error.response.status === 401 || error.response.status === 403) {
+        if (error.response && error.status === 401 || error.status === 403) {
           console.log('Unauthorized, logging out ...');
           localStorage.removeItem('token');
           setOpenDialog(true);
@@ -188,7 +188,7 @@ function Login() {
         setUsername('');
         setPassword('');
 
-        if (error.response && error.response.status === 401 || error.response.status === 403) {
+        if (error.response && error.status === 401 || error.status === 403) {
           console.log('Unauthorized, logging out ...');
           localStorage.removeItem('token');
           setOpenDialog(true);

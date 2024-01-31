@@ -33,7 +33,7 @@ function LandingPage() {
                 setRestaurantId(response.data[0].id)
             })
             .catch(error => {
-                if (error.response && error.response.status === 401 || error.response.status === 403) {
+                if (error && error.status === 401 || error.status === 403) {
                     console.log('Unauthorized, logging out ...');
                     localStorage.removeItem('token');
                     setOpenDialog(true);
@@ -69,7 +69,7 @@ function LandingPage() {
                 // Handle ticket creation success
             })
             .catch(error => {
-                if (error.response && error.response.status === 401 || error.response.status === 403) {
+                if (error && error.status === 401 || error.status === 403) {
                     console.log('Unauthorized, logging out ...');
                     localStorage.removeItem('token');
                     setOpenDialog(true);
