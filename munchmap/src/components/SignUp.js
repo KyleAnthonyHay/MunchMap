@@ -18,6 +18,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import RestaurantForm from './SignUpComponents/RestaurantForm';
 import ShelterForm from './SignUpComponents/ShelterForm';
+import BackButton from './BackButton';
 
 const API_URL = 'http://localhost:8000/api/restaurants/'; // Replace with your API URL
 
@@ -175,6 +176,9 @@ function SignUp() {
           </Button>
         </DialogActions>
       </Dialog>
+      
+      <div className='page-container'>
+      <div className='back-button'><BackButton/></div>
       <div className="login-form">
         <Box
           sx={{
@@ -208,6 +212,7 @@ function SignUp() {
 
 
        
+      </div>
       </div>
     </div>
   );
