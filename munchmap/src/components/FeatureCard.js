@@ -44,7 +44,7 @@ const FeatureCard = () => {
                         <Card>
                             <CardContent className="card-content">
                                 <Typography gutterBottom variant="h5" component="h2">
-                                Minimizes food waste, strengthens community
+                                Minimize food waste, strengthen community
                                 </Typography>
                                 <img src={UploadImage} className="card-img" alt="Upload Tickets" style={{ width: '52%', padding: '18px' }}/>
                                 <Typography>
