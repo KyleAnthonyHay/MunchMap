@@ -25,12 +25,28 @@ const SpecialistTicket = ({ ticket }) => {
     }
     console.log("Ticket marked as inspected");
   };
-
+  const markAsUninspected = async (ticketId) => {
+    const token = localStorage.getItem('token');
+    console.log(ticketId);
+    try {
+      const response = await axios.post(`http://localhost:8000/api/tickets/${ticketId}/uncheck_ticket/`, {}, {
+        headers: { Authorization: `Token ${token}` }
+      });
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+    console.log("Ticket marked as not inspected");
+  };
+  
   // Handle change event for checkbox
   const handleChange = (event) => {
     setChecked(event.target.checked);
     if (event.target.checked) {
       markAsInspected(ticket.id);
+    } else
+    {
+      markAsUninspected(ticket.id);
     }
   };
 
