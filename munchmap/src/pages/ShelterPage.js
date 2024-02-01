@@ -98,13 +98,13 @@ const ShelterPage = () => {
     <div>
       <CustomDialog
         open={isDialogOpen}
-        onClose={() => setIsDialogOpen(false)}
+        handleClose={() => setIsDialogOpen(false)}
         title="Success"
         content="Request Created Successfully"
       />
       <CustomDialog
         open={openDialog}
-        onClose={() => setOpenDialog(false)}
+        handleClose={() => setOpenDialog(false)}
         title="Error"
         content="An error occured, please log in again"
       /> 
