@@ -2,18 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './RestaurantForm.css'
 import { useNavigate } from 'react-router-dom';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button';
 import SignOutButton from '../components/SignOutButton';
 import Typography from '@mui/material/Typography';
-import { Box, Grid } from '@mui/material';
 import LoadingScreen from '../utils/LoadingScreen';
+import CustomDialog from '../utils/CustomDialog';
 
 function LandingPage() {
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+
     const [loading, setLoading] = useState(true); 
     const [ticketData, setTicketData] = useState({
         food_category: 0,
@@ -76,6 +72,7 @@ function LandingPage() {
                 console.log(response)
                 console.log('Ticket created successfully', response.data);
                 // Handle ticket creation success
+                setIsDialogOpen(true);
             })
             .catch(error => {
                 if (error && error.status === 401 || error.status === 403) {
@@ -106,35 +103,32 @@ function LandingPage() {
         console.log('Sign Out clicked');
     }
 
+    const handleCloseDialog = () => {
+        setIsDialogOpen(false);
+    };
+
+
     if (loading) {
         return <LoadingScreen />
     }
 
     return (
         <div>
-        <SignOutButton />
-        <div className="landing-page">
-            <Dialog
+            <CustomDialog
+                open={isDialogOpen}
+                handleClose={handleCloseDialog}
+                title="Success"
+                content="Ticket created successfully"
+            />
+
+            <CustomDialog 
                 open={openDialog}
-                onClose={() => setOpenDialog(false)}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-            >
-                <DialogTitle id="alert-dialog-title">{"Login Required"}</DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                       A problem occurred, please try again.  
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={() => navigate('/login')} color="primary">
-                        Login
-                    </Button>
-                    <Button onClick={() => setOpenDialog(false)} color="primary" autoFocus>
-                        Close
-                    </Button>
-                </DialogActions>
-            </Dialog>
+                handleClose={() => setOpenDialog(false)}
+                title="Error"
+                content="An error occurred, please try again."
+            />
+        <SignOutButton />
+        <div className="landing-page"> 
             <div className="container">
                 <Typography variant="h2" component="h2" style={{ fontSize: '40px', padding: '20px', textAlign: 'center', whiteSpace: 'nowrap' }}>
                     Enter Donation Information

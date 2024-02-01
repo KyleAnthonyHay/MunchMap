@@ -13,6 +13,8 @@ import '../components/RestaurantForm.css';
 import { Dialog } from '@mui/material';
 import LoadingScreen from '../utils/LoadingScreen';
 
+import CustomDialog from '../utils/CustomDialog';
+
 
 const ShelterPage = () => {
   const [shelter, setShelter] = useState(null);
@@ -21,6 +23,8 @@ const ShelterPage = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
 
   // Simluates a loading screen
@@ -75,6 +79,7 @@ const ShelterPage = () => {
         }
       });
       console.log('Request created:', response.data);
+      setIsDialogOpen(true);
     } catch (error) {
       console.error('Error creating ticket:', error);
     }
@@ -91,16 +96,18 @@ const ShelterPage = () => {
   
   return (
     <div>
-      <Dialog
+      <CustomDialog
+        open={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+        title="Success"
+        content="Request Created Successfully"
+      />
+      <CustomDialog
         open={openDialog}
         onClose={() => setOpenDialog(false)}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <Typography variant="h6" component="h6" style={{ padding: '20px', textAlign: 'center' }}>
-         An error occured, please log in again 
-        </Typography>
-      </Dialog>
+        title="Error"
+        content="An error occured, please log in again"
+      /> 
       <SignOutButton/>
       <Grid container justifyContent="center" alignItems="center">
         <Grid item xs={12} md={6}>
