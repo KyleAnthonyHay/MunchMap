@@ -20,6 +20,13 @@ const VolunteerPage = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const [parent, setParent] = useState('Initial State');
+
+  const updateParent = (newState) => {
+    setParent(newState);
+    fetchShelterRequests();
+  }
+
 
   // Simluates a loading screen
   useEffect(() => {
@@ -27,6 +34,20 @@ const VolunteerPage = () => {
       setLoading(false);
     }, 1500);
   }, []);
+
+
+  const fetchShelterRequests = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await axios.get('http://localhost:8000/api/shelter-requests/list_not_delivered_requests/', {
+        headers: { Authorization: `Token ${token}` }
+      });
+      setShelterRequests(response.data);
+    } catch (err) {
+      console.log(err)
+    }
+  };
+
 
 
    // Fetch the specialist to display their page otherwise redirect to login
@@ -119,11 +140,13 @@ const VolunteerPage = () => {
           {shelterRequests.map((shelterRequest) => (
             <>
               <VolunteerTicket key={shelterRequest.id} 
+              ShelterID={shelterRequest.id}
               ShelterName={shelterRequest.shelter.name} 
               ShelterAddress={shelterRequest.shelter.address}
               FoodCategory={shelterRequest.food_category}
               QuantityRequested={shelterRequest.quantity_requested}
               RestaurantList={shelterRequest.tickets}
+              updateParent= {updateParent} 
               />
             </>
           )
