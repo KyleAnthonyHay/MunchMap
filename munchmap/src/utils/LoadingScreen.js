@@ -34,11 +34,11 @@ const LoadingScreen = () => {
           },
         }}
       >
-        <CircularProgress size={70} />
+        <CircularProgress size={70} style={{ color: '#6273D9' }} />
         <Typography
-          sx={{
+           sx={{
             marginTop: 3,
-            color: 'primary.main',
+            color: '#6273D9',  // Change this to the desired color
             fontSize: '1.2rem',
             fontWeight: 'bold',
           }}

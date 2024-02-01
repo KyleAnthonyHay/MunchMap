@@ -129,7 +129,7 @@ const ShelterPage = () => {
         <Grid item xs={12} md={6}>
           <StyledCard elevation={3}>
             <Typography variant="h4" align="center" gutterBottom sx={{ fontWeight: 'bold', color: '#6273D9' }}>
-              Create a Shelter Ticket
+              Make a Request
             </Typography>
             <form>
               <FormControl fullWidth margin="normal">
@@ -153,7 +153,7 @@ const ShelterPage = () => {
                   <MenuItem value="2">Non-Perishables</MenuItem>
                 </Select>
               </FormControl>
-              <StyledButton type="submit" onClick={handleSubmit} variant="contained" fullWidth>
+              <StyledButton type="submit" onClick={handleSubmit} variant="contained" fullWidth sx={{ backgroundColor: '#6273D9', '&:hover': { backgroundColor: '#5F65D9' } }}>
                 Create Ticket
               </StyledButton>
             </form>
