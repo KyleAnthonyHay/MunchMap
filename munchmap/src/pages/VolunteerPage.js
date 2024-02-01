@@ -7,6 +7,8 @@ import { Box, Grid } from '@mui/material';
 import SignOutButton from '../components/SignOutButton';
 import { VolunteerTicket } from '../components/VolunteerTicket';
 import { useNavigate } from 'react-router-dom';
+import  LoadingScreen  from '../utils/LoadingScreen';
+import CustomDialog from '../utils/CustomDialog';
 
 
 const VolunteerPage = () => {
@@ -14,12 +16,23 @@ const VolunteerPage = () => {
   const [chosenShelterRequest, setChosenShelterRequest] = useState(null);
   const [volunteer, setVolunteer] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+
+  // Simluates a loading screen
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, []);
+
 
    // Fetch the specialist to display their page otherwise redirect to login
    useEffect(() => {
     const token = localStorage.getItem('token');
-    const fetchSpecialist = async () => {
+    const fetchVolunteer = async () => {
       try {
         const response = await axios.get('http://localhost:8000/api/volunteers/get_my_volunteer/', {
           headers: {
@@ -34,7 +47,7 @@ const VolunteerPage = () => {
         
       }
     };
-    fetchSpecialist();
+    fetchVolunteer();
   }
   , []);
 
@@ -69,10 +82,33 @@ const VolunteerPage = () => {
     }
   };
 
+  const handleConfirmAction = async () => {
+    await handleDeliver();
+    setIsDialogOpen(false);
+  }
 
+  const handleCancelAction = () => {
+    setIsDialogOpen(false);
+  }
+
+
+
+  if (loading) {
+    return <LoadingScreen />
+  }
 
   return (
     <div>
+      <CustomDialog
+        open={isDialogOpen}
+        handleClose={handleCancelAction}
+        title="Are you sure you want to confirm?"
+        content="You are about to confirm delivery of this ticket."
+        showConfirmButton={true}
+        onConfirm={handleConfirmAction}
+        confirmText="Yes"
+        cancelText="No"
+      />
       <SignOutButton />
       <Grid container justifyContent="center" alignItems="center">
       <Grid item xs={12} md={5}>

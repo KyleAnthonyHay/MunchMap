@@ -12,6 +12,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
+import CustomDialog from '../../utils/CustomDialog';
 
 
 const RestaurantForm = () => {
@@ -27,7 +28,7 @@ const RestaurantForm = () => {
 
   const [openDialog, setOpenDialog] = useState(false);
 
-   
+
   // ***************************** Handlers for input changes *****************************
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -54,7 +55,7 @@ const RestaurantForm = () => {
     setEmail(event.target.value);
   };
 
-    async function handleSignUp() { //for restarants
+  async function handleSignUp() { //for restarants
     // If any of the fields are empty, return early
     if (!username || !password || !first_name || !last_name || !phone_number || !email) {
       setOpenDialog(true);
@@ -84,48 +85,36 @@ const RestaurantForm = () => {
       setPassword('');
     }
   };
-  
+
   return (
     <div>
-      <Dialog
+      <CustomDialog
         open={openDialog}
-        onClose={() => setOpenDialog(false)}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">{"Login Required"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-          An error occurred. Please try signing up with different credentials. 
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions> 
-          <Button onClick={() => setOpenDialog(false)} color="primary" autoFocus>
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
+        handleClose={() => setOpenDialog(false)}
+        title="Error"
+        content="Please fill out all fields / Try again with different credentials"
+      />
       <div className="input-group">
-    <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
-    <input type="text" placeholder="First Name" value={first_name} onChange={handleFirstNameChange} /> {/* first name */}
-    <input type="text" placeholder="Last Name" value={last_name} onChange={handleLastNameChange} /> {/* last name */}
-    <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
-    <input type="text" placeholder="Phone" value={phone_number} onChange={handlePhoneChange} /> 
-    <input type="text" placeholder="Email" value={email} onChange={handleEmailChange} />
-   
-  </div>
-  <div className="remember-forgot">
-    <label>
-      <input type="checkbox" /> Remember me
-    </label>
-    <a href="#">Forgot Password?</a>
-  </div>
-  {/* call renderConditionally() every time any of the flags change */}
-  {/* {renderConditionally()} */}
-  <button className="login-button" onClick={handleSignUp}>Specialist Sign Up</button>
-  <div className="register-link">
-    Already have an account? <Link to="/login">Log In</Link>
-  </div></div>
+        <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
+        <input type="text" placeholder="First Name" value={first_name} onChange={handleFirstNameChange} /> {/* first name */}
+        <input type="text" placeholder="Last Name" value={last_name} onChange={handleLastNameChange} /> {/* last name */}
+        <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+        <input type="text" placeholder="Phone" value={phone_number} onChange={handlePhoneChange} />
+        <input type="text" placeholder="Email" value={email} onChange={handleEmailChange} />
+
+      </div>
+      <div className="remember-forgot">
+        <label>
+          <input type="checkbox" /> Remember me
+        </label>
+        <a href="#">Forgot Password?</a>
+      </div>
+      {/* call renderConditionally() every time any of the flags change */}
+      {/* {renderConditionally()} */}
+      <button className="login-button" onClick={handleSignUp}>Specialist Sign Up</button>
+      <div className="register-link">
+        Already have an account? <Link to="/login">Log In</Link>
+      </div></div>
   )
 }
 

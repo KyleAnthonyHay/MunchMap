@@ -1,25 +1,51 @@
-import React from 'react'
-import axios from 'axios'
-import { useState } from 'react';
-import { useEffect } from 'react';
-import SignOutButton from '../components/SignOutButton'
-// MaterialUI Imports
-import Typography from '@mui/material/Typography';
-import { Box, Grid } from '@mui/material';
-import Button from '@mui/material/Button';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-// styles
-import '../components/RestaurantForm.css';
-import { Dialog } from '@mui/material';
+import {
+  Box, Grid, Typography, Button, TextField, Select, MenuItem, FormControl, InputLabel, Card, Snackbar, Slide
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
+import SignOutButton from '../components/SignOutButton';
+import CustomDialog from '../utils/CustomDialog';
+import LoadingScreen from '../utils/LoadingScreen';
+
+
+// Styled components using Material UI's 'styled' API
+const StyledCard = styled(Card)(({ theme }) => ({
+  padding: theme.spacing(3),
+  marginTop: theme.spacing(3),
+  transition: 'transform 0.3s ease-in-out',
+  '&:hover': {
+    transform: 'scale(1.05)'
+  }
+}));
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  backgroundColor: '#6273D9',
+  '&:hover': {
+    backgroundColor: theme.palette.primary.dark
+  }
+}));
 
 
 const ShelterPage = () => {
   const [shelter, setShelter] = useState(null);
   const [quantity_requested, setQuantity] = useState(10);
-  const [food_category, setFoodCategory] = useState(0);
+  const [food_category, setFoodCategory] = useState("0");
   const [openDialog, setOpenDialog] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+
+  // Simluates a loading screen
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -46,6 +72,7 @@ const ShelterPage = () => {
     event.preventDefault();
     // Make sure fields are not empty
     if (!quantity_requested || !food_category) {
+      console.log('Error: Fields are empty');
       setOpenDialog(true);
       return;
     }
@@ -64,6 +91,7 @@ const ShelterPage = () => {
         }
       });
       console.log('Request created:', response.data);
+      setIsDialogOpen(true);
     } catch (error) {
       console.error('Error creating ticket:', error);
     }
@@ -71,63 +99,70 @@ const ShelterPage = () => {
 
   const handleInputChange = (event) => {
         setFoodCategory(event.target.value);
+
     };
+
+
+  if (loading) {
+    return <LoadingScreen />
+  }
   
   
   return (
-    <div>
-      <Dialog
+    <Box sx={{ flexGrow: 1, padding: 3 }}>
+      <CustomDialog
+        open={isDialogOpen}
+        handleClose={() => setIsDialogOpen(false)}
+        title="Success"
+        content="Request Created Successfully"
+      />
+      <Snackbar
         open={openDialog}
+        autoHideDuration={6000}
         onClose={() => setOpenDialog(false)}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <Typography variant="h6" component="h6" style={{ padding: '20px', textAlign: 'center' }}>
-         An error occured, please log in again 
-        </Typography>
-      </Dialog>
-      <SignOutButton/>
-      <Grid container justifyContent="center" alignItems="center" >
-      <Grid item xs={12} md={5}>
-        <div>
-            <Typography variant="h2" component="h2" style={{ fontSize: '40px', padding: '20px', textAlign: 'center', whiteSpace: 'nowrap' }}>
-            Make a Request
+
+        message="An error occurred, please log in again"
+        TransitionComponent={Slide}
+      />
+      <SignOutButton />
+      <Grid container spacing={2} justifyContent="center">
+        <Grid item xs={12} md={6}>
+          <StyledCard elevation={3}>
+            <Typography variant="h4" align="center" gutterBottom sx={{ fontWeight: 'bold', color: '#6273D9' }}>
+              Create a Shelter Ticket
             </Typography>
-            <form onSubmit={handleSubmit} className="donation-form">
-              <div className="form-group">
-                <label>
-                  Quantity:
-                  <input
-                    type="number"
-                    value={quantity_requested}
-                    onChange={(event) => setQuantity(event.target.value)}
-                    className="form-control"
-                  />
-                </label>
-              </div>
-              <div className="form-group">
-                        <label>Type:</label>
-                        <select name="food_category" onChange={handleInputChange} value={food_category} className="form-control">
-                            <option value="0">Can Food</option>
-                            <option value="1">Vegetables</option>
-                            <option value="2">Non-Perishables</option>
-                        </select>
-                    </div>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      style={{ backgroundColor: '#5F65D9', color: 'white' }}
-                      onClick={handleSubmit}
-                    >
-                      Create Ticket
-                    </Button>
+            <form>
+              <FormControl fullWidth margin="normal">
+                <TextField
+                  label="Quantity"
+                  type="number"
+                  value={quantity_requested}
+                  onChange={(event) => setQuantity(event.target.value)}
+                  variant="outlined"
+                />
+              </FormControl>
+              <FormControl fullWidth margin="normal">
+                <InputLabel>Type</InputLabel>
+                <Select
+                  value={food_category}
+                  onChange={handleInputChange}
+                  label="Type"
+                >
+                  <MenuItem value="0">Can Food</MenuItem>
+                  <MenuItem value="1">Vegetables</MenuItem>
+                  <MenuItem value="2">Non-Perishables</MenuItem>
+                </Select>
+              </FormControl>
+              <StyledButton type="submit" onClick={handleSubmit} variant="contained" fullWidth>
+                Create Ticket
+              </StyledButton>
             </form>
-          </div>
+          </StyledCard>
         </Grid>
       </Grid>
-    </div>
-  )
-}
+    </Box>
+  );
+};
 
-export default ShelterPage
-//
+
+export default ShelterPage;

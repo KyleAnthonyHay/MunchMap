@@ -3,11 +3,7 @@ import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+
 import Button from '@mui/material/Button';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
@@ -17,6 +13,8 @@ import FormControl from '@mui/material/FormControl';
 import InputBase from '@mui/material/InputBase';
 import SignUpButton from './SignUpButton';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CustomDialog from '../utils/CustomDialog';
+
 
 const API_URL = 'http://localhost:8000/api/login/';
 
@@ -195,28 +193,19 @@ function Login() {
   });
 
   return (
+
     <div> <SignUpButton />
-    <div>
-      <Dialog
-        open={openDialog}
-        onClose={() => setOpenDialog(false)}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">{"Login Required"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            An error occurred. Please try again with the correct credentials.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenDialog(false)} color="primary" autoFocus>
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
+    
       <div className='page-container' style={{ marginTop: 0, display: 'flex',
     justifyContent: 'center', alignItems: 'center' }}>
+      <CustomDialog
+        open={openDialog}
+        handleClose={() => setOpenDialog(false)}
+        title="Login failed"
+        content="An error occurred during login. Please try again."
+      />
+    <div className="login-container"> 
+      <div className='page-container'>
         {/*<div className='back-button'><BackButton /></div>*/}
         <div className="login-form">
           <div className="toggle-buttons">

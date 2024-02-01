@@ -7,13 +7,24 @@ import Typography from '@mui/material/Typography';
 import { Box, Grid } from '@mui/material';
 import SignOutButton from '../components/SignOutButton';
 import { useNavigate } from 'react-router-dom';
+import  LoadingScreen  from '../utils/LoadingScreen';
+import CustomDialog from '../utils/CustomDialog';
 
 
 const SpecialistPage = () => {
   const [tickets, setTickets] = useState([]);
   const [specialist, setSpecialist] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+
+  // Simluates a loading screen
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, []);
 
   // Fetch the specialist to display their page otherwise redirect to login
   useEffect(() => {
@@ -54,8 +65,19 @@ const SpecialistPage = () => {
     fetchTickets();
   }, []);
 
+
+  if (loading) {
+    return <LoadingScreen />
+  }
+
   return (
     <div>
+      <CustomDialog
+        open={openDialog}
+        title="Are you sure you want to confirm?"
+        content="You are about to confirm inspection of this ticket."
+        onClose={() => setOpenDialog(false)}
+      />
       <SignOutButton />
     <Grid container justifyContent="center" alignItems="center">
       <Grid item xs={12} md={5}>
