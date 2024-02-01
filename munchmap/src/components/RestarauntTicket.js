@@ -55,14 +55,14 @@ const RestarauntTicket = ({ ticketNumber, name, location, contactInfo, donationT
           <Typography variant="body2" color="text.secondary">
           <VolunteerActivismIcon color="action" sx={{ mr: 0.6 }} /> Donation Type: {donationType}
           </Typography>
+          <Typography variant="body2" color="text.secondary">
+          <ProductionQuantityLimitsIcon color="action" sx={{ mr: 0.6 }} /> Quantity: {quantity}
+          </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
             <DateRangeIcon color="action" sx={{ mr: 0.9 }} /> Expiration Date: {expirationDate}
           </Typography>
           <Typography variant="body2" sx={{ color: inspected ? green[500] : red[500], display: 'flex', alignItems: 'center' }}>
             {inspected ? <CheckCircleOutlineIcon sx={{ mr: 0.9 }} /> : <ErrorOutlineIcon sx={{ mr: 0.9 }} />} Inspected: {inspected ? 'Yes' : 'No'}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-          <ProductionQuantityLimitsIcon color="action" sx={{ mr: 0.6 }} /> Quantity: {quantity}
           </Typography>
           {/* <Button variant="outlined">Match to Shelter</Button> */}
         </CardContent>

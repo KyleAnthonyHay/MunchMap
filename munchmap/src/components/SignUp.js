@@ -18,7 +18,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import RestaurantForm from './SignUpComponents/RestaurantForm';
 import ShelterForm from './SignUpComponents/ShelterForm';
-import BackButton from './BackButton';
+import BackLoginButtons from './BackLoginButtons';
 
 const API_URL = 'http://localhost:8000/api/restaurants/'; // Replace with your API URL
 
@@ -157,6 +157,8 @@ function SignUp() {
   }
 
   return (
+    <div>
+      <BackLoginButtons />
     <div className="login-container">
       <Dialog
         open={openDialog}
@@ -178,26 +180,16 @@ function SignUp() {
       </Dialog>
       
       <div className='page-container'>
-      <div className='back-button'><BackButton/></div>
-      <div className="login-form">
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            '& > *': {
-              m: 1,
-            },
-          }}
-        >
-          <ButtonGroup variant="text" aria-label="text button group">
-            <Button onClick={turnonRestaurantFlag}>Restaurant</Button>
-            <Button onClick={turnonAdminFlag}>Admin</Button>
-            <Button onClick={turnonVolunteerFlag}>Volunteer</Button>
-            <Button onClick={turnonSpecialistFlag}>Specialist</Button>
-            <Button onClick={turnonShelterFlag}>Shelter</Button>
+      <div className='back-button'></div>
+      <div className="login-form" style={{ width: '400px' }}>
+       
+          <ButtonGroup variant="text" aria-label="text button group" style={{ textAlign: 'center', width: '100%', backgroundColor: 'A8A2E1' }}>
+            <Button onClick={turnonRestaurantFlag} style={{ color: '#6273D9' }}>Restaurant</Button>
+            <Button onClick={turnonAdminFlag} style={{ color: '#6273D9' }}>Admin</Button>
+            <Button onClick={turnonVolunteerFlag} style={{ color: '#6273D9' }}>Volunteer</Button>
+            <Button onClick={turnonSpecialistFlag} style={{ color: '#6273D9' }}>Specialist</Button>
+            <Button onClick={turnonShelterFlag} style={{ color: '#6273D9' }}>Shelter</Button>
           </ButtonGroup>
-        </Box>
 
         { AdminFlag && <AdminForm/> }
         { VolunteerFlag && <VolunteerForm/>}
@@ -214,6 +206,7 @@ function SignUp() {
        
       </div>
       </div>
+    </div>
     </div>
   );
 }

@@ -1,14 +1,4 @@
 /* doest work */
-.page-container{
-  display: flex; 
-}
-
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
   
   .login-form {
     width: 350px; /* Adjust the width as needed */
@@ -46,16 +36,7 @@
     font-size: 0.9em;
   }
   
-  /*.login-button {
-    width: 100%;
-    padding: 10px;
-    margin: 20px 0;
-    border: none;
-    border-radius: 5px;
-    background-color: #5F65D9;
-    color: white;
-    cursor: pointer;
-  }*/
+
   .login-button {
     width: 100%;
     padding: 10px;
@@ -92,6 +73,35 @@
   .back-button {
     align-items: left;
   }
+  a {
+    color: #5F65D9;
+  }
+  .role-select{
+    padding: 10px;
   
-  /* Add additional styling as needed */
+  }
+  .input-group {
+    width: 100%; 
+    display: flex;
+    flex-direction: column; /* Arrange children vertically */
+    align-items: center; /* Center the children horizontally */
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+.menu-item {
+  color: #333;
+  padding: 8px 16px;
+
+}
+
+.menu-item:hover {
+  background-color: #f0f0f0;
+}
   

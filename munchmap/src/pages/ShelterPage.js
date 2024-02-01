@@ -87,10 +87,11 @@ const ShelterPage = () => {
         </Typography>
       </Dialog>
       <SignOutButton/>
-      <Grid container justifyContent="center" alignItems="center">
-        <Grid item xs={12} md={6}>
+      <Grid container justifyContent="center" alignItems="center" >
+      <Grid item xs={12} md={5}>
+        <div>
             <Typography variant="h2" component="h2" style={{ fontSize: '40px', padding: '20px', textAlign: 'center', whiteSpace: 'nowrap' }}>
-              Create a Shelter Ticket
+            Make a Request
             </Typography>
             <form onSubmit={handleSubmit} className="donation-form">
               <div className="form-group">
@@ -112,11 +113,16 @@ const ShelterPage = () => {
                             <option value="2">Non-Perishables</option>
                         </select>
                     </div>
-                <Button type="submit" variant="contained" color="primary" onClick={handleSubmit}>
-                  Create Ticket
-                </Button>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      style={{ backgroundColor: '#5F65D9', color: 'white' }}
+                      onClick={handleSubmit}
+                    >
+                      Create Ticket
+                    </Button>
             </form>
-
+          </div>
         </Grid>
       </Grid>
     </div>

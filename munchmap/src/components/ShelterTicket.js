@@ -11,7 +11,7 @@ import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantity
 
 const ShelterTicket = ({ ticketNumber, name, location, contactInfo, donationType, quantityRequested }) => {
   return (
-    <Card sx={{ width: 500, m: 2, boxShadow: 3 }}>
+    <Card sx={{ width: 500, m: 2, boxShadow: 3, }}>
       <CardActionArea>
         <CardContent sx={{ '& .MuiTypography-root': { mb: 1 },  }}>
           <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'center' }}>
@@ -26,11 +26,11 @@ const ShelterTicket = ({ ticketNumber, name, location, contactInfo, donationType
           <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
             <ContactPhoneIcon color="action" sx={{ mr: 0.9 }} /> Contact Info: {contactInfo}
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
-            <ProductionQuantityLimitsIcon color="action" sx={{ mr: 0.9 }} /> Quantity Requested: {quantityRequested}
-          </Typography>
           <Typography variant="body2" color="text.secondary">
             <VolunteerActivismIcon color="action" sx={{ mr: 0.9 }} /> Donation Type: {donationType}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
+            <ProductionQuantityLimitsIcon color="action" sx={{ mr: 0.9 }} /> Quantity Requested: {quantityRequested}
           </Typography>
         </CardContent>
       </CardActionArea>
