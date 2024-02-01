@@ -1,7 +1,6 @@
 import React from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, IconButton, useTheme, useMediaQuery } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, useTheme, useMediaQuery } from '@mui/material';
 import { styled, keyframes } from '@mui/system';
-import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 import { grey, deepPurple } from '@mui/material/colors';
 
@@ -43,13 +42,6 @@ const CustomDialogTitle = styled(DialogTitle)(({ theme }) => ({
   color: 'white',
 }));
 
-const CustomIconButton = styled(IconButton)({
-  position: 'absolute',
-  right: 8,
-  top: 8,
-  color: grey[500],
-});
-
 const CustomButton = styled(Button)(({ theme }) => ({
   margin: theme.spacing(1),
   borderRadius: '20px',
@@ -81,9 +73,6 @@ const CustomDialog = ({ open, handleClose, title, content, showConfirmButton = f
     >
       <CustomDialogTitle id="custom-dialog-title">
         {title}
-        <CustomIconButton aria-label="close" onClick={handleClose}>
-          <CloseIcon />
-        </CustomIconButton>
       </CustomDialogTitle>
       <CustomDialogContent dividers>
         <DialogContentText id="custom-dialog-description" sx={{ textAlign: 'justify' }}>
