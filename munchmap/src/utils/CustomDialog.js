@@ -38,7 +38,7 @@ const CustomDialogTitle = styled(DialogTitle)(({ theme }) => ({
   textAlign: 'center',
   fontWeight: 'bold',
   padding: theme.spacing(2),
-  backgroundColor: '#62AFD9',
+  backgroundColor: '#6273D9', 
   color: 'white',
 }));
 
@@ -46,10 +46,12 @@ const CustomButton = styled(Button)(({ theme }) => ({
   margin: theme.spacing(1),
   borderRadius: '20px',
   fontWeight: 'bold',
-  color: grey[50],
-  backgroundColor: grey[600],
+  color: '#6273D9',  // Change this to the desired color
+  backgroundColor: 'transparent',  // Set to transparent for outlined button
+  borderColor: '#6273D9',  // Change this to the desired color
   '&:hover': {
-    backgroundColor: grey[700],
+    backgroundColor: '#6273D9',  // Change this to the desired hover color
+    color: 'white',  // Change this to the desired hover text color
   },
 }));
 
