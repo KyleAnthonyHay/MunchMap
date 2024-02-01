@@ -13,9 +13,15 @@ const AdminView = () => {
     const [tickets, setTickets] = useState([]);
     const [expiredTickets, setExpiredTickets] = useState([]);
     const [shelterRequests, setShelterRequests] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Simluates a loading screen
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1500);
+    }, []);
 
     const fetchTickets = async () => {
         const token = localStorage.getItem('token');
@@ -106,7 +112,7 @@ const AdminView = () => {
             setTimeout(() => { 
                 setIsLoading(false);
             }
-            , 3000);
+            , 1500);
         }
     };
 

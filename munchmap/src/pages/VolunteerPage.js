@@ -7,6 +7,7 @@ import { Box, Grid } from '@mui/material';
 import SignOutButton from '../components/SignOutButton';
 import { VolunteerTicket } from '../components/VolunteerTicket';
 import { useNavigate } from 'react-router-dom';
+import  LoadingScreen  from '../utils/LoadingScreen';
 
 
 const VolunteerPage = () => {
@@ -14,7 +15,17 @@ const VolunteerPage = () => {
   const [chosenShelterRequest, setChosenShelterRequest] = useState(null);
   const [volunteer, setVolunteer] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+
+  // Simluates a loading screen
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, []);
+
 
    // Fetch the specialist to display their page otherwise redirect to login
    useEffect(() => {
@@ -70,6 +81,9 @@ const VolunteerPage = () => {
   };
 
 
+  if (loading) {
+    return <LoadingScreen />
+  }
 
   return (
     <div>
