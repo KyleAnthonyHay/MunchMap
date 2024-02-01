@@ -12,6 +12,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
+import CustomDialog from '../../utils/CustomDialog';
 
 
 const RestaurantForm = () => {
@@ -93,24 +94,12 @@ const RestaurantForm = () => {
   }
   return (
     <div>
-      <Dialog
+       <CustomDialog
         open={openDialog}
-        onClose={() => setOpenDialog(false)}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">{"Login Required"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-          An error occurred. Please try signing up with different credentials. 
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions> 
-          <Button onClick={() => setOpenDialog(false)} color="primary" autoFocus>
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
+        handleClose={() => setOpenDialog(false)}
+        title="Error"
+        content="Please fill out all fields / Try again with different credentials"
+      /> 
       <div className="input-group">
     <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
     <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} /> {/* New password input */}

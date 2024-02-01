@@ -8,6 +8,7 @@ import SignOutButton from '../components/SignOutButton';
 
 import Button from '@mui/material/Button';
 import LoadingScreen from '../utils/LoadingScreen';
+import CustomDialog from '../utils/CustomDialog';
 
 const AdminView = () => {
     const [tickets, setTickets] = useState([]);
@@ -15,6 +16,7 @@ const AdminView = () => {
     const [shelterRequests, setShelterRequests] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isDialogOpen , setIsDialogOpen] = useState(false);
 
     // Simluates a loading screen
     useEffect(() => {
@@ -116,15 +118,40 @@ const AdminView = () => {
         }
     };
 
+    const clickMatchButton = () => {
+        setIsDialogOpen(true);
+    }
+
+    const handleClose = () => {
+        setIsDialogOpen(false);
+    }
+
+    const handleConfirmAction = async () => {
+        await matchTicketsWithShelterRequests();
+        setIsDialogOpen(false);
+    }
+
     const testConsoleLog = () => {
         console.log('test');
     }
+
+
     if (isLoading) return <LoadingScreen />;
     if (error) return <div>Error: {error.message}</div>;
 
     
     return (
-        <div>  
+        <div> 
+            <CustomDialog
+                open={isDialogOpen}
+                handleClose={handleClose}
+                title="Confirm Action"
+                content="Are you sure you want to match tickets with shelter requests?"
+                showConfirmButton={true}
+                onConfirm={handleConfirmAction}
+                confirmText="Match"
+                cancelText="Cancel"
+            />
             <SignOutButton />
         <div className="admin-view">
             {/* ******************************** Restaurant Tickets ******************************** */}
@@ -132,7 +159,7 @@ const AdminView = () => {
             <Typography variant="h2" component="h2" style={{ fontSize: '40px' }}>
             Restaraunt Tickets
             </Typography>
-            <Button variant="contained" onClick={matchTicketsWithShelterRequests}>Match Tickets to Shelters</Button>
+            <Button variant="contained" onClick={clickMatchButton}>Match Tickets to Shelters</Button>
                 {tickets.map(ticket => (
                     <RestarauntTicket 
                         ticketNumber={ticket.id}
