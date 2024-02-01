@@ -209,7 +209,7 @@ function Login() {
         {/*<div className='back-button'><BackButton /></div>*/}
         <div className="login-form">
           <div className="toggle-buttons">
-          <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '24px', fontWeight: '350' }}>
+          <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '24px'}}>
             Log in
           </Typography>
           </div>
@@ -231,32 +231,32 @@ function Login() {
             className="role-select"
           >
             <MenuItem value="" disabled>
-            <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '20px', fontWeight: '350' }}>
+            <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '20px'}}>
             Select Role
             </Typography>
               </MenuItem>
             <MenuItem value="restaurant">
-            <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '20px', fontWeight: '350' }}>
+            <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '20px'}}>
             Restaurant
             </Typography>
             </MenuItem>
             <MenuItem value="specialist">
-            <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '20px', fontWeight: '350' }}>
+            <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '20px'}}>
             Specialist
             </Typography>
             </MenuItem>
             <MenuItem value="shelter">
-            <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '20px', fontWeight: '350' }}>
+            <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '20px'}}>
             Shelter
             </Typography>
             </MenuItem>
             <MenuItem value="admin">
-            <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '20px', fontWeight: '350' }}>
+            <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '20px'}}>
             Admin
             </Typography>
             </MenuItem>
             <MenuItem value="volunteer">
-            <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '20px', fontWeight: '350' }}>
+            <Typography component="h1" variant="h2" color="inherit" noWrap sx={{ fontSize: '20px'}}>
             Volunteer
             </Typography>
             </MenuItem>
