@@ -11,8 +11,10 @@ import Button from '@mui/material/Button';
 import SignOutButton from '../components/SignOutButton';
 import Typography from '@mui/material/Typography';
 import { Box, Grid } from '@mui/material';
+import LoadingScreen from '../utils/LoadingScreen';
 
 function LandingPage() {
+    const [loading, setLoading] = useState(true); 
     const [ticketData, setTicketData] = useState({
         food_category: 0,
         expiration_date: '', // format YYYY-MM-DD
@@ -23,6 +25,13 @@ function LandingPage() {
     const [openDialog, setOpenDialog] = useState(false);
 
     const [restaurantId, setRestaurantId] = useState(null);
+
+    // Simluates a loading screen
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 1500);
+    }, []);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -95,6 +104,10 @@ function LandingPage() {
     function handleSignOut() {
         navigate('/');
         console.log('Sign Out clicked');
+    }
+
+    if (loading) {
+        return <LoadingScreen />
     }
 
     return (

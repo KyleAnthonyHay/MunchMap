@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 // styles
 import '../components/RestaurantForm.css';
 import { Dialog } from '@mui/material';
+import LoadingScreen from '../utils/LoadingScreen';
 
 
 const ShelterPage = () => {
@@ -18,7 +19,17 @@ const ShelterPage = () => {
   const [quantity_requested, setQuantity] = useState(10);
   const [food_category, setFoodCategory] = useState(0);
   const [openDialog, setOpenDialog] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+
+  // Simluates a loading screen
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, []);
+
 
 
   useEffect(() => {
@@ -72,6 +83,10 @@ const ShelterPage = () => {
   const handleInputChange = (event) => {
         setFoodCategory(event.target.value);
     };
+
+  if (loading) {
+    return <LoadingScreen />
+  }
   
   
   return (
