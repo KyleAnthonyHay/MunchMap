@@ -159,7 +159,22 @@ const AdminView = () => {
             <Typography variant="h2" component="h2" style={{ fontSize: '40px' }}>
             Restaraunt Tickets
             </Typography>
-            <Button variant="contained" onClick={clickMatchButton}>Match Tickets to Shelters</Button>
+
+            <Button
+                variant="contained"
+                onClick={clickMatchButton}
+                sx={{
+                backgroundColor: '#6273D9',
+                color: 'white',
+                margin: '20px',
+                '&:hover': {
+                backgroundColor: '#5F65D9',
+                },
+                }}
+            >  
+                Match Tickets to Shelters
+            </Button>
+
                 {tickets.map(ticket => (
                     <RestarauntTicket 
                         ticketNumber={ticket.id}
@@ -167,9 +182,9 @@ const AdminView = () => {
                         location={ticket.restaurant.address}
                         contactInfo={ticket.restaurant.phone_number}
                         donationType={ticket.food_category_display}
+                        quantity={ticket.quantity}
                         expirationDate={ticket.expiration_date}
                         inspected={ticket.checked}
-                        quantity={ticket.quantity}
                     />
                 ))}
                 {console.log(tickets)}

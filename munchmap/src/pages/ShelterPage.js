@@ -47,8 +47,6 @@ const ShelterPage = () => {
     }, 1500);
   }, []);
 
-
-
   useEffect(() => {
     const token = localStorage.getItem('token');
     const fetchShelter = async () => {
@@ -122,6 +120,7 @@ const ShelterPage = () => {
         open={openDialog}
         autoHideDuration={6000}
         onClose={() => setOpenDialog(false)}
+
         message="An error occurred, please log in again"
         TransitionComponent={Slide}
       />
