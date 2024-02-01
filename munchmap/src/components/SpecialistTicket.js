@@ -15,6 +15,7 @@ const SpecialistTicket = ({ ticket }) => {
   // State to track if the checkbox is checked
   const [checked, setChecked] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [unCheckDialogOpen, setUnCheckDialogOpen] = useState(false);
 
   const markAsInspected = async (ticketId) => {
     const token = localStorage.getItem('token');
@@ -46,21 +47,28 @@ const SpecialistTicket = ({ ticket }) => {
   // Simplified handleConfirmAction
   const handleConfirmAction = async () => {
     await markAsInspected(ticket.id);
+    setChecked(true); // Update checked state
     setIsDialogOpen(false); // Close dialog after action
+    setUnCheckDialogOpen(false); // Close uncheck dialog if it's open
   };
 
   // handleCancelAction remains the same
   const handleCancelAction = async () => {
     await markAsUninspected(ticket.id);
-    setChecked(false);
+    setChecked(false); 
     setIsDialogOpen(false);
+    setUnCheckDialogOpen(false);
   };
 
 
   // Handle change event for checkbox
   const handleChange = (event) => {
     setChecked(event.target.checked);
-    setIsDialogOpen(true);
+    if (event.target.checked) {
+      setIsDialogOpen(true);
+    } else {
+      setUnCheckDialogOpen(true);
+    }
   };
 
   return (
@@ -72,6 +80,17 @@ const SpecialistTicket = ({ ticket }) => {
         content="Are you sure you want to mark this ticket as inspected?"
         showConfirmButton={true}
         onConfirm={handleConfirmAction}
+        confirmText="Yes"
+        cancelText="No"
+      />
+
+      <CustomDialog
+        open={unCheckDialogOpen}
+        handleClose={handleConfirmAction}
+        title="Confirm Action"
+        content="Are you sure you want to mark this ticket as uninspected?"
+        showConfirmButton={true}
+        onConfirm={handleCancelAction}
         confirmText="Yes"
         cancelText="No"
       />

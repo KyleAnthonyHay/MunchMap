@@ -15,7 +15,7 @@ import LoadingScreen from '../utils/LoadingScreen';
 import axios from 'axios';
 
 
-export const VolunteerTicket = ({ key, ShelterName, ShelterAddress, FoodCategory, QuantityRequested, RestaurantList }) => {
+export const VolunteerTicket = ({ key, ShelterID, ShelterName, ShelterAddress, FoodCategory, QuantityRequested, RestaurantList, updateParent }) => {
 
   const uniqueRestaurantNames = Array.from(new Set(RestaurantList.map(ticket => ticket.restaurant.address)));
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -25,13 +25,14 @@ export const VolunteerTicket = ({ key, ShelterName, ShelterAddress, FoodCategory
   const handleDeliver = async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.post(`http://localhost:8000/api/shelter-requests/${key}/deliver_request/`, {}, {
+      const response = await axios.post(`http://localhost:8000/api/shelter-requests/${ShelterID}/deliver_request/`, {}, {
         headers: { Authorization: `Token ${token}` }
       });
       console.log(response); 
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
+        updateParent("Delivered a request");
       }, 1500);
       
     } catch (err) {
