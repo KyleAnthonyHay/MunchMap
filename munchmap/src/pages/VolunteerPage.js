@@ -119,7 +119,7 @@ const VolunteerPage = () => {
   }
 
   return (
-    <div>
+    <Box >
       <CustomDialog
         open={isDialogOpen}
         handleClose={handleCancelAction}
@@ -133,8 +133,8 @@ const VolunteerPage = () => {
       <SignOutButton />
       <Grid container justifyContent="center" alignItems="center">
       <Grid item xs={12} md={5}>
-        <Box style={{ position: 'relative', padding: { xs: 3, md: 6 }, paddingBottom: { md: 0 }, width: 500 }}>
-          <Typography variant="h2" component="h2" style={{ fontSize: '40px', padding: '20px', textAlign: 'center' }}>
+        {/*<Box style={{ position: 'relative', padding: { xs: 3, md: 6 }, paddingBottom: { md: 0 }, width: 500 }}>*/}
+          <Typography variant="h2" component="h2" align="center" style={{ fontSize: '40px', padding: '20px', textAlign: 'center' }}>
             Deliver to Shelters
           </Typography>
           {shelterRequests.map((shelterRequest) => (
@@ -151,10 +151,10 @@ const VolunteerPage = () => {
             </>
           )
           )}
-        </Box>
+        {/*</Box>*/}
       </Grid>
     </Grid>
-    </div>
+    </Box>
   )
 }
 
