@@ -71,7 +71,7 @@ const SpecialistPage = () => {
   }
 
   return (
-    <div>
+    <Box >
       <CustomDialog
         open={openDialog}
         title="Are you sure you want to confirm?"
@@ -79,20 +79,18 @@ const SpecialistPage = () => {
         onClose={() => setOpenDialog(false)}
       />
       <SignOutButton />
-    <Grid container justifyContent="center" alignItems="center">
-      <Grid item xs={12} md={5}>
-        <Box style={{ position: 'relative', padding: { xs: 3, md: 6 }, paddingBottom: { md: 0 }, width: 500 }}>
-          <Typography variant="h2" component="h2" style={{ fontSize: '40px', padding: '20px', textAlign: 'center' }}>
+    <Grid container spacing={2} justifyContent="center">
+      <Grid item xs={12} md={6}>
+          <Typography variant="h2" component="h2" align="center" style={{ fontSize: '40px', padding: '20px', textAlign: 'center' }}>
             Tickets to Inspect
           </Typography>
           {tickets.map((ticketss) => (
             console.log(ticketss),
             <SpecialistTicket ticket={ticketss} key={ticketss.id} />
           ))}
-        </Box>
       </Grid>
     </Grid>
-    </div>
+    </Box>
   )
 }
 

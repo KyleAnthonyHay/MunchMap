@@ -94,7 +94,7 @@ const SpecialistTicket = ({ ticket }) => {
         confirmText="Yes"
         cancelText="No"
       />
-      <Card sx={{ maxWidth: 500, m: 2, boxShadow: 3, listStyle: 'none', padding: 0 }}>
+      <Card alignItems="center" sx={{ maxWidth: 500, m: 2, boxShadow: 3, listStyle: 'none', padding: 0, marginLeft: 'auto', marginRight: 'auto' }}>
         <CardActionArea>
           <CardContent sx={{ '& .MuiTypography-root': { mb: 1 } }}>
             {/* Restaraunt Inspect Ticket */}
